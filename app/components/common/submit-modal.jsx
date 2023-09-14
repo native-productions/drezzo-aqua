@@ -9,13 +9,15 @@ function SubmitModal({ onClose }) {
   return (
     <Card className="rounded-2xl border-none bg-border-blue-linear-gradient p-[3px]">
       <Card className="border-none bg-[#111827] p-6 text-[#8A939E]">
-        <header className="space-y-1">
-          <XMarkIcon
-            onClick={onClose}
-            className="float-right h-8 w-8 cursor-pointer rounded-full bg-[#ffffff31] p-1 text-white"
-          />
+        <header className="mb-8 space-y-1">
+          <div className="flex w-full justify-end">
+            <XMarkIcon
+              onClick={onClose}
+              className=" h-8 w-8 cursor-pointer rounded-full bg-[#ffffff31] p-1 text-white"
+            />
+          </div>
           <Title
-            className="w-full text-center text-2xl text-white"
+            className="w-full translate-x-4 text-center text-2xl text-white"
             withoutDropShadow
           >
             submit form

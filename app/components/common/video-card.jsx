@@ -4,7 +4,7 @@
 
 import React, { useRef } from 'react'
 import Link from 'next/link'
-import { HeartFilledIcon, PauseIcon, PlayIcon } from '@radix-ui/react-icons'
+import { HeartFilledIcon } from '@radix-ui/react-icons'
 import { cn } from '@/lib/utils/view'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'

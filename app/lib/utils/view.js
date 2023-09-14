@@ -6,3 +6,11 @@ export function cn(...inputs) {
 }
 
 export const createDropshadow = (color, blur = 0.5) => `0 0 ${blur}rem ${color}`
+
+export const capitalize = (string) => {
+  const words = string.split(/(?=[A-Z])|\s+/)
+  const capitalizedWords = words.map(
+    (word) => word.charAt(0).toUpperCase() + word.slice(1),
+  )
+  return capitalizedWords.join(' ')
+}
