@@ -46,7 +46,7 @@ function VideoCard({ playable = false, modalOpen = false }) {
       className={cn(
         'relative grid place-content-center overflow-hidden rounded-3xl border-none',
         playable ? 'h-full w-full' : 'max-h-[465px]',
-        showVideo ? 'opacity-100' : 'h-[400px] animate-pulse',
+        showVideo && playable ? 'opacity-100' : 'h-[400px] animate-pulse',
       )}
     >
       <video
