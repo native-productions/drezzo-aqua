@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils/view'
 
-function DrezzoButton({ children, borderClassName, ...props }) {
+function DrezzoButton({ children, borderClassName, loading, ...props }) {
   return (
     <div
       className={cn(
@@ -12,9 +12,10 @@ function DrezzoButton({ children, borderClassName, ...props }) {
     >
       <Button
         {...props}
+        disabled={loading}
         className={cn('bg-blue-linear-gradient', props.className)}
       >
-        {children}
+        {loading ? 'Loading...' : children}
       </Button>
     </div>
   )

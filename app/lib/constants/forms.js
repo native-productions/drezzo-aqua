@@ -35,11 +35,42 @@ export const projectFormSchema = z.object({
   telegram: z.string().min(2).max(50),
   whereDoYouKnow: z
     .string()
-    .min(2, {
-      message: 'Where do you know must be at least 2 characters',
+    .min(1, {
+      message: 'Where do you know must be at least 1 characters',
     })
     .max(50, {
       message: 'Where do you know must be at most 50 characters',
     }),
   file: fileSchema,
 })
+
+export const whereDoYouKnowOptions = [
+  {
+    label: 'Instagram',
+    value: 'instagram',
+  },
+  {
+    label: 'X',
+    value: 'x',
+  },
+  {
+    label: 'Facebook',
+    value: 'facebook',
+  },
+  {
+    label: 'Tiktok',
+    value: 'tiktok',
+  },
+  {
+    label: 'Telegram',
+    value: 'telegram',
+  },
+  {
+    label: 'Friends',
+    value: 'friends',
+  },
+  {
+    label: 'Other',
+    value: 'other',
+  },
+]

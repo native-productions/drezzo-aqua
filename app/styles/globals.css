@@ -126,3 +126,7 @@
       /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
     linear-gradient(67.13deg, #ff6f00 0%, #fa5002 100%);
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

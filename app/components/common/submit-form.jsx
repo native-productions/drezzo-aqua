@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable import/no-extraneous-dependencies */
 
@@ -14,18 +15,23 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useFieldArray, useForm } from 'react-hook-form'
-import { projectFormSchema } from '@/lib/constants/forms'
+import { projectFormSchema, whereDoYouKnowOptions } from '@/lib/constants/forms'
 import { submitProject } from '@/lib/server/actions/project.action'
 import { capitalize } from '@/lib/utils/view'
 import { useState, useEffect, Fragment } from 'react'
 import { TrashIcon } from '@radix-ui/react-icons'
+import { countriesOptions } from '@/lib/constants/nationality'
+import { useRouter } from 'next/navigation'
+import { useToast } from '../ui/use-toast'
 import MultipleUploader from './multiple-uploader'
 import DrezzoButton from './drezzo-button'
-import { useToast } from '../ui/use-toast'
+import Combobox from './combobox'
 
 export default function SubmitForm() {
   const { toast } = useToast()
   const [files, setFiles] = useState([])
+  const [loading, setLoading] = useState(false)
+  const { back } = useRouter()
   const form = useForm({
     resolver: zodResolver(projectFormSchema),
   })
@@ -50,6 +56,7 @@ export default function SubmitForm() {
     })
 
     try {
+      setLoading(true)
       await submitProject(formData)
       toast({
         title: 'Success',
@@ -57,19 +64,31 @@ export default function SubmitForm() {
         status: 'success',
         duration: 5000,
       })
+      setLoading(false)
+
+      setTimeout(() => {
+        form.reset()
+        back()
+      }, 500)
     } catch (error) {
       console.error(error)
 
-      const errorUnique = error.message.includes('Unique')
+      const errorUnique = error.message.includes('Unique constraint failed')
       const errorEmail = error.message.includes('email')
 
       if (errorUnique && errorEmail) {
+        form.setFocus('email')
+        form.setError('email', {
+          type: 'manual',
+          message: 'Email already exists',
+        })
         toast({
           title: 'Error',
           description: 'Email already exists',
           status: 'error',
           duration: 5000,
         })
+        setLoading(false)
         return
       }
 
@@ -79,6 +98,7 @@ export default function SubmitForm() {
         status: 'error',
         duration: 5000,
       })
+      setLoading(false)
     }
   }
 
@@ -110,6 +130,12 @@ export default function SubmitForm() {
     append('')
   }
 
+  const isBasicInput = (key) =>
+    key !== 'file' &&
+    key !== 'listProjectMember' &&
+    key !== 'nationality' &&
+    key !== 'whereDoYouKnow'
+
   useEffect(() => {
     append('')
   }, [])
@@ -125,7 +151,7 @@ export default function SubmitForm() {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  {key !== 'file' && key !== 'listProjectMember' && (
+                  {isBasicInput(key) && (
                     <Input
                       className="text-white"
                       type={key === 'email' ? 'email' : 'text'}
@@ -133,16 +159,34 @@ export default function SubmitForm() {
                       onChange={(e) => {
                         field.onChange(e.target.value)
                       }}
+                      {...field}
                     />
                   )}
                 </FormControl>
+                {key === 'nationality' && (
+                  <Combobox
+                    name={capitalize(field.name)}
+                    items={countriesOptions}
+                    onSelect={(value) => {
+                      form.setValue('nationality', value)
+                    }}
+                  />
+                )}
+                {key === 'whereDoYouKnow' && (
+                  <Combobox
+                    name={capitalize(field.name)}
+                    items={whereDoYouKnowOptions}
+                    onSelect={(value) => {
+                      form.setValue('whereDoYouKnow', value)
+                    }}
+                  />
+                )}
                 {key === 'listProjectMember' && (
-                  <div className="relative flex h-auto max-h-[140px] w-full flex-col space-y-3 overflow-x-hidden overflow-y-scroll pr-4">
+                  <div className="scrollbar-hide relative flex h-auto max-h-[150px] w-full flex-col space-y-3 overflow-x-hidden overflow-y-scroll">
                     {fields.map((item, index) => (
                       <Fragment key={item.id}>
                         <div className="flex items-center space-x-2">
                           <Input
-                            // key={item.id}
                             className="text-white"
                             type="text"
                             placeholder={capitalize(field.name)}
@@ -160,6 +204,7 @@ export default function SubmitForm() {
                         </div>
                         {index === fields.length - 1 && (
                           <DrezzoButton
+                            loading={loading}
                             borderClassName="w-full hover:scale-100"
                             className="w-full"
                             type="button"
@@ -186,7 +231,9 @@ export default function SubmitForm() {
             )}
           />
         ))}
-        <DrezzoButton type="submit">Submit</DrezzoButton>
+        <DrezzoButton loading={loading} type="submit">
+          Submit
+        </DrezzoButton>
       </form>
     </Form>
   )
