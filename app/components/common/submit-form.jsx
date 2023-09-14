@@ -28,14 +28,13 @@ import DrezzoButton from './drezzo-button'
 import Combobox from './combobox'
 
 export default function SubmitForm() {
-  const { toast } = useToast()
-  const [files, setFiles] = useState([])
-  const [loading, setLoading] = useState(false)
   const { back } = useRouter()
+  const { toast } = useToast()
+  const [blob, setBlob] = useState([])
+  const [loading, setLoading] = useState(false)
   const form = useForm({
     resolver: zodResolver(projectFormSchema),
   })
-
   const { fields, append, remove } = useFieldArray({
     control: form.control,
     name: 'listProjectMember',
@@ -43,21 +42,24 @@ export default function SubmitForm() {
 
   const onSubmit = async (data) => {
     const members = data.listProjectMember.map((item) => item.member)
-    const datas = { ...data, listProjectMember: members, file: files[0] }
-
-    const formData = new FormData()
-
-    Object.keys(datas).forEach((key) => {
-      if (key === 'file') {
-        formData.append(key, datas[key])
-      } else {
-        formData.append(key, JSON.stringify(datas[key]))
-      }
-    })
+    const file = blob[0]
+    const datas = { ...data, listProjectMember: members, file }
 
     try {
+      const formData = new FormData()
+
+      Object.keys(datas).forEach((key) => {
+        if (key === 'file') {
+          formData.append(key, datas[key])
+        } else {
+          formData.append(key, JSON.stringify(datas[key]))
+        }
+      })
+
       setLoading(true)
-      await submitProject(formData)
+
+      await submitProject(formData, file.name)
+
       toast({
         title: 'Success',
         description: 'Project submitted successfully',
@@ -71,7 +73,7 @@ export default function SubmitForm() {
         back()
       }, 500)
     } catch (error) {
-      console.error(error)
+      console.error('@submitProjectError =>', error)
 
       const errorUnique = error.message.includes('Unique constraint failed')
       const errorEmail = error.message.includes('email')
@@ -102,28 +104,28 @@ export default function SubmitForm() {
     }
   }
 
-  const onDrop = (acceptedFiles) => {
-    const file = acceptedFiles[0]
+  const onDrop = (acceptedBlob) => {
+    const file = acceptedBlob[0]
 
-    const fileSizeInMB = Number(file.size / 1024 / 1024).toFixed(2)
+    const blobizeInMB = Number(file.size / 1024 / 1024).toFixed(2)
 
     if (file.size > 10000000) {
       toast({
         title: 'File size is too large',
-        description: `Expected file size is at most 10MB, but got ${fileSizeInMB}MB`,
+        description: `Expected file size is at most 10MB, but got ${blobizeInMB}MB`,
         status: 'error',
         duration: 5000,
       })
       return
     }
 
-    setFiles(acceptedFiles)
+    setBlob(acceptedBlob)
 
-    form.setValue('file', acceptedFiles[0])
+    form.setValue('file', acceptedBlob[0])
   }
 
   const handleRemoveFile = (path) => {
-    setFiles(files.filter((file) => file.path !== path))
+    setBlob(blob.filter((file) => file.path !== path))
   }
 
   const handleAdd = () => {
@@ -221,7 +223,7 @@ export default function SubmitForm() {
                   <MultipleUploader
                     accept="jpg,png,gif"
                     onDrop={onDrop}
-                    files={files}
+                    files={blob}
                     handleRemoveFile={handleRemoveFile}
                     maxFiles={1}
                   />
