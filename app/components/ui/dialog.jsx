@@ -10,12 +10,12 @@ const Dialog = DialogPrimitive.Root
 
 const DialogTrigger = DialogPrimitive.Trigger
 
-const DialogPortal = ({
+function DialogPortal({
   className,
   ...props
-}) => (
-  <DialogPrimitive.Portal className={cn(className)} {...props} />
-)
+}) {
+  return <DialogPrimitive.Portal className={cn(className)} {...props} />
+}
 DialogPortal.displayName = DialogPrimitive.Portal.displayName
 
 const DialogOverlay = React.forwardRef(({ className, ...props }, ref) => (
@@ -50,24 +50,24 @@ const DialogContent = React.forwardRef(({ className, children, ...props }, ref) 
 ))
 DialogContent.displayName = DialogPrimitive.Content.displayName
 
-const DialogHeader = ({
+function DialogHeader({
   className,
   ...props
-}) => (
-  <div
+}) {
+  return <div
     className={cn("flex flex-col space-y-1.5 text-center sm:text-left", className)}
     {...props} />
-)
+}
 DialogHeader.displayName = "DialogHeader"
 
-const DialogFooter = ({
+function DialogFooter({
   className,
   ...props
-}) => (
-  <div
+}) {
+  return <div
     className={cn("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className)}
     {...props} />
-)
+}
 DialogFooter.displayName = "DialogFooter"
 
 const DialogTitle = React.forwardRef(({ className, ...props }, ref) => (

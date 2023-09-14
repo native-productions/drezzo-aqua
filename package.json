@@ -11,7 +11,7 @@
     "add:ui": "pnpm dlx shadcn-ui@latest add",
     "env:set": "pnpm dlx dotenv -e .env.local",
     "env:pull": "pnpm dlx vercel env pull",
-    "db:prepare": "pnpm db:generate",
+    "db:prepare": "pnpm lint:fix && pnpm db:generate",
     "db:generate": "pnpm dlx prisma generate",
     "db:pull": "pnpm dlx prisma db pull",
     "db:migrate:dev": "pnpm dlx prisma migrate dev",
