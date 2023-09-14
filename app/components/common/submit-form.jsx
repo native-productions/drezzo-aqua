@@ -64,7 +64,7 @@ export default function SubmitForm() {
 
       if (errorUnique && errorEmail) {
         toast({
-          title: 'Error email',
+          title: 'Error',
           description: 'Email already exists',
           status: 'error',
           duration: 5000,
@@ -84,6 +84,21 @@ export default function SubmitForm() {
   }
 
   const onDrop = (acceptedFiles) => {
+    const file = acceptedFiles[0]
+
+    const fileSizeInMB = Number(file.size / 1024 / 1024).toFixed(2)
+
+    if (file.size > 10000000) {
+      toast({
+        title: 'File size is too large',
+        description: `Expected file size is at most 10MB, but got ${fileSizeInMB}MB`,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      })
+      return
+    }
+
     setFiles(acceptedFiles)
 
     form.setValue('file', acceptedFiles[0])

@@ -17,7 +17,7 @@ function SubmitModal({ onClose }) {
             />
           </div>
           <Title
-            className="w-full translate-x-4 text-center text-2xl text-white"
+            className="w-full text-center text-2xl text-white"
             withoutDropShadow
           >
             submit form
