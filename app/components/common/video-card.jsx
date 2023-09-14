@@ -53,7 +53,10 @@ function VideoCard({ playable = false, modalOpen = false }) {
         ref={videoRef}
         controls={playable}
       >
-        <source src="/video/teaser.mp4" type="video/mp4" />
+        <source
+          src="https://storage.googleapis.com/drezzo/videos/VIDEO%20PROFIL%20DREZZO.mp4"
+          type="video/mp4"
+        />
       </video>
       {!playable && (
         <Button className="absolute bottom-5 left-5 z-40 rounded-full bg-transparent text-white backdrop-blur-lg">
