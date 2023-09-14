@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "pnpm db:prepare && next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "add:ui": "pnpm dlx shadcn-ui@latest add",
+    "db:prepare": "pnpm db:generate",
     "db:generate": "pnpm dlx prisma generate",
     "db:pull": "pnpm dlx prisma db pull",
     "db:migrate:dev": "pnpm dlx prisma migrate dev",
