@@ -20,6 +20,7 @@ function MultipleUploader({
       accept,
       multiple: true,
       maxFiles,
+      maxSize: 10000000,
     })
 
   return (

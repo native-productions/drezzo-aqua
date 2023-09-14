@@ -62,8 +62,6 @@ export default function SubmitForm() {
       const errorUnique = error.message.includes('Unique')
       const errorEmail = error.message.includes('email')
 
-      console.log(errorUnique, errorEmail)
-
       if (errorUnique && errorEmail) {
         toast({
           title: 'Error email',
@@ -87,6 +85,7 @@ export default function SubmitForm() {
 
   const onDrop = (acceptedFiles) => {
     setFiles(acceptedFiles)
+
     form.setValue('file', acceptedFiles[0])
   }
 
@@ -125,7 +124,7 @@ export default function SubmitForm() {
                   )}
                 </FormControl>
                 {key === 'listProjectMember' && (
-                  <div className="relative flex h-auto max-h-[200px] w-full flex-col space-y-3 overflow-x-hidden overflow-y-scroll pr-4">
+                  <div className="relative flex h-auto max-h-[140px] w-full flex-col space-y-3 overflow-x-hidden overflow-y-scroll pr-4">
                     {fields.map((item, index) => (
                       <Fragment key={item.id}>
                         <div className="flex items-center space-x-2">
