@@ -27,7 +27,7 @@ const prizesContent = [
 
 function PrizesSection() {
   return (
-    <section>
+    <section id="prizes">
       <Title>WIN THE PRIZES</Title>
       <div className="mt-8 grid grid-cols-3 gap-8">
         {prizesContent.map((prize) => (

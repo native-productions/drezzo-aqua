@@ -29,7 +29,7 @@ function TermsSection() {
   }
 
   return (
-    <section>
+    <section id="terms-and-conditions">
       <header className="space-y-4">
         <Title>TERMS AND CONDITION</Title>
         <p

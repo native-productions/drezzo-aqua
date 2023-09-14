@@ -4,7 +4,7 @@ import Image from 'next/image'
 
 function TimelineSection() {
   return (
-    <section className="space-y-12 pb-6">
+    <section id="timeline" className="space-y-12 pb-6">
       <Title>Timeline of competition</Title>
       <Image
         src="/images/timeline.png"

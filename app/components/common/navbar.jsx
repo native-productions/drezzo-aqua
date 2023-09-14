@@ -1,18 +1,16 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
 import DrezzoButton from '@/components/common/drezzo-button'
 import { navbarMenu } from '@/lib/constants/menus'
 import { cn } from '@/lib/utils/view'
 import { fontInter } from '@/styles/fonts/index'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 function Navbar() {
-  const handleScroll = () => {}
   const { push } = useRouter()
-
   return (
     <header
       className={cn(
@@ -30,7 +28,7 @@ function Navbar() {
           />
         </div>
         <span className="text-3xl">/</span>
-        {navbarMenu.map((item, index) => (
+        {navbarMenu.map((item) => (
           <Link
             href={item.path}
             key={item.name}

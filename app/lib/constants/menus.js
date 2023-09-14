@@ -7,14 +7,14 @@ export const navbarMenu = [
   },
   {
     name: 'Prizes',
-    path: '/prizes',
+    path: '#prizes',
   },
   {
     name: 'Terms And Conditions',
-    path: '/terms-and-conditions',
+    path: '#terms-and-conditions',
   },
   {
     name: 'Timeline',
-    path: '/timeline',
+    path: '#timeline',
   },
 ]
