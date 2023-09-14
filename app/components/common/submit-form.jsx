@@ -56,9 +56,10 @@ export default function SubmitForm() {
         description: 'Project submitted successfully',
         status: 'success',
         duration: 5000,
-        isClosable: true,
       })
     } catch (error) {
+      console.error(error)
+
       const errorUnique = error.message.includes('Unique')
       const errorEmail = error.message.includes('email')
 
@@ -68,7 +69,6 @@ export default function SubmitForm() {
           description: 'Email already exists',
           status: 'error',
           duration: 5000,
-          isClosable: true,
         })
         return
       }
@@ -78,7 +78,6 @@ export default function SubmitForm() {
         description: 'Something went wrong',
         status: 'error',
         duration: 5000,
-        isClosable: true,
       })
     }
   }
@@ -94,7 +93,6 @@ export default function SubmitForm() {
         description: `Expected file size is at most 10MB, but got ${fileSizeInMB}MB`,
         status: 'error',
         duration: 5000,
-        isClosable: true,
       })
       return
     }
