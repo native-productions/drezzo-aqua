@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-shadow */
 /* eslint-disable default-case */
 /* eslint-disable consistent-return */
+
 // Inspired by react-hot-toast library
 import * as React from 'react'
 
