@@ -3,7 +3,7 @@
 import Navbar from '@/components/common/navbar'
 import Footer from '@/components/common/footer'
 import { Decorators } from '@/components/common/decorators'
-import { Toaster } from '@/components/ui/toaster'
+import Toaster from '@/components/ui/toaster'
 import '@/styles/globals.css'
 
 export const metadata = {

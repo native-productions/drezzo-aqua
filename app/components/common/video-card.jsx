@@ -11,16 +11,13 @@ import { Button } from '@/components/ui/button'
 
 function VideoCard({ playable = false, modalOpen = false }) {
   const videoRef = useRef(null)
-  const [playing, setPlaying] = React.useState(false)
 
   const handlePlay = () => {
     videoRef.current.play()
-    setPlaying(true)
   }
 
   const handlePause = () => {
     videoRef.current.pause()
-    setPlaying(false)
   }
 
   React.useEffect(() => {
@@ -47,8 +44,8 @@ function VideoCard({ playable = false, modalOpen = false }) {
       )}
     >
       <video
-        onPlaying={() => setPlaying(true)}
-        onEnded={() => setPlaying(false)}
+        // onPlaying={() => setPlaying(true)}
+        // onEnded={() => setPlaying(false)}
         className="relative z-30 rounded-md bg-red-200"
         ref={videoRef}
         controls={playable}

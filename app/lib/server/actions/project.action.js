@@ -18,8 +18,6 @@ export const submitProject = async (formData) => {
     projectFilePath: filePath,
   }
 
-  console.log('@submitProject payload =>', data)
-
   await prisma.projects.create({
     data,
   })
