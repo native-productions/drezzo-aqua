@@ -10,6 +10,7 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 
 function VideoCard({ playable = false, modalOpen = false }) {
+  const [showVideo, setShowVideo] = React.useState(false)
   const videoRef = useRef(null)
 
   const handlePlay = () => {
@@ -31,6 +32,10 @@ function VideoCard({ playable = false, modalOpen = false }) {
       video.currentTime = 2
     }
 
+    if (video.readyState === 1) {
+      setShowVideo(true)
+    }
+
     return () => {
       video.currentTime = 2
     }
@@ -41,12 +46,13 @@ function VideoCard({ playable = false, modalOpen = false }) {
       className={cn(
         'relative grid place-content-center overflow-hidden rounded-3xl border-none',
         playable ? 'h-full w-full' : 'max-h-[465px]',
+        showVideo ? 'opacity-100' : 'h-[400px] animate-pulse',
       )}
     >
       <video
         // onPlaying={() => setPlaying(true)}
         // onEnded={() => setPlaying(false)}
-        className="relative z-30 rounded-md bg-red-200"
+        className="relative z-30 rounded-md"
         ref={videoRef}
         controls={playable}
       >
@@ -55,7 +61,7 @@ function VideoCard({ playable = false, modalOpen = false }) {
           type="video/mp4"
         />
       </video>
-      {!playable && (
+      {!playable && showVideo && (
         <Button className="absolute bottom-5 left-5 z-40 rounded-full bg-transparent text-white backdrop-blur-lg">
           <Link href="/teaser" className="flex items-center space-x-2">
             <HeartFilledIcon className="h-4 w-4" />
