@@ -14,11 +14,11 @@ function Navbar() {
   return (
     <header
       className={cn(
-        'z-50 mb-4 flex w-full items-center justify-between px-8',
+        'z-50 mb-4 flex w-full items-center justify-between overflow-x-hidden sm:px-8',
         fontInter.medium.className,
       )}
     >
-      <nav className="flex w-max items-center space-x-4 font-semibold text-white">
+      <nav className="hidden w-max items-center space-x-4 font-semibold text-white md:flex">
         <div className="py-6">
           <Image
             src="/svgs/logo-white.svg"
@@ -39,7 +39,14 @@ function Navbar() {
           </Link>
         ))}
       </nav>
-      <DrezzoButton onClick={() => push('/submit')}>SUBMIT NOW!</DrezzoButton>
+      <div className="flex w-full justify-center pt-3 md:block md:w-auto md:pt-0">
+        <DrezzoButton
+          className="mx-auto md:mx-0"
+          onClick={() => push('/submit')}
+        >
+          SUBMIT NOW!
+        </DrezzoButton>
+      </div>
     </header>
   )
 }

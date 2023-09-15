@@ -5,7 +5,7 @@ import TimelineSection from '@/components/sections/timeline'
 
 export default async function Home() {
   return (
-    <div className="space-y-12">
+    <div className="space-y-6 md:space-y-12">
       <HeroSection />
       <PrizesSection />
       <TermsSection />

@@ -31,9 +31,14 @@ function TermsSection() {
   return (
     <section id="terms-and-conditions">
       <header className="space-y-4">
-        <Title>TERMS AND CONDITION</Title>
+        <Title className="mx-auto text-center md:text-left">
+          TERMS AND CONDITION
+        </Title>
         <p
-          className={cn('text-2xl text-[#e8e6e3ac]', fontInter.base.className)}
+          className={cn(
+            'text-center text-base text-[#e8e6e3ac] md:text-left md:text-2xl',
+            fontInter.base.className,
+          )}
         >
           Please read these Terms and Conditions {`("Terms")`} carefully before
           participating in our NFT PROJECT COMPETITION 2023 {`("Competition")`}.
@@ -42,15 +47,19 @@ function TermsSection() {
           Competition.
         </p>
       </header>
-      <div className="flex items-center justify-evenly">
+      <div className="flex flex-col items-center md:flex-row md:items-center md:justify-evenly">
         <Image
           src="/digital-fashion/terms1.png"
           alt="digital-fashion-drezzo"
-          className="-translate-y-6"
+          className="mb-8 max-w-[200px] md:mb-0 md:max-w-none md:-translate-y-6"
           width={430}
           height={430}
         />
-        <Accordion type="single" collapsible className="mt-3 w-1/2">
+        <Accordion
+          type="single"
+          collapsible
+          className="mt-3 max-w-[260px] md:w-1/2 md:max-w-none"
+        >
           {termsContent.map(({ id, title, content }) => (
             <AccordionItem key={id} value="item-1">
               <AccordionTrigger onClick={handleOpen}>
@@ -58,7 +67,7 @@ function TermsSection() {
                   <AccordionChip isOpen={isOpen} />
                   <Title
                     withoutDropShadow
-                    className="flex items-center gap-x-2 text-2xl text-white"
+                    className="flex items-center gap-x-2 text-base text-white md:text-2xl"
                   >
                     <span>{title}</span>
                   </Title>
@@ -89,12 +98,16 @@ function TermsSection() {
           ))}
         </Accordion>
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <div className="flex items-center justify-evenly">
-        <Accordion type="single" collapsible className="mt-3 w-1/2">
+      <br className="hidden md:visible" />
+      <br className="hidden md:visible" />
+      <br className="hidden md:visible" />
+      <br className="hidden md:visible" />
+      <div className="flex flex-col items-center md:flex-row md:items-center md:justify-evenly">
+        <Accordion
+          type="single"
+          collapsible
+          className="mt-3 max-w-[260px] md:w-1/2 md:max-w-none"
+        >
           {termsContent2.map(({ id, title, content }) => (
             <AccordionItem key={id} value="item-1">
               <AccordionTrigger onClick={handleOpen2}>
@@ -102,7 +115,7 @@ function TermsSection() {
                   <AccordionChip isOpen={isOpen2} />
                   <Title
                     withoutDropShadow
-                    className="flex items-center gap-x-2 text-2xl text-white"
+                    className="flex items-center gap-x-2 text-base text-white md:text-2xl"
                   >
                     <span>{title}</span>
                   </Title>
@@ -135,7 +148,7 @@ function TermsSection() {
         <Image
           src="/digital-fashion/terms2.png"
           alt="digital-fashion-drezzo"
-          className="-translate-y-6"
+          className="mt-8 max-w-[200px] md:mt-0 md:max-w-none md:-translate-y-6"
           width={430}
           height={430}
         />
@@ -143,18 +156,18 @@ function TermsSection() {
       <br />
       <br />
       <br />
-      <div className="mt-12 flex items-start justify-evenly">
+      <div className="mt-6 flex w-full flex-col items-center md:mt-12 md:flex-row md:items-start md:justify-evenly">
         <Image
           src="/digital-fashion/terms3.png"
           alt="digital-fashion-drezzo"
-          className="-translate-y-6"
+          className="max-w-[200px] md:max-w-none md:-translate-y-6"
           width={430}
           height={430}
         />
-        <div className="w-1/2 space-y-6">
+        <div className="mt-6 space-y-6 md:mt-0 md:w-1/2">
           <div className="flex flex-col justify-start">
-            <Title className="text-3xl">judging</Title>
-            <ul className="ml-4 mt-2 list-decimal text-lg text-[#e8e6e3ac]">
+            <Title className="text-2xl md:text-3xl">judging</Title>
+            <ul className="ml-4 mt-2 list-decimal text-sm text-[#e8e6e3ac] md:text-lg">
               <li>
                 Entries will be judged based on creativity, originality,
                 technical execution, and adherence.
@@ -167,10 +180,13 @@ function TermsSection() {
             </ul>
           </div>
           <div className="flex flex-col justify-start">
-            <Title withoutDropShadow className="text-3xl text-white">
+            <Title
+              withoutDropShadow
+              className="text-2xl text-white md:text-3xl"
+            >
               Minting Process
             </Title>
-            <p className="mt-2 text-lg text-[#e8e6e3ac]">
+            <p className="mt-2 text-sm text-[#e8e6e3ac] md:text-lg">
               All NFT project competitions are agree to be minted on platforms
               owned by DREZZO or associated platforms.
             </p>

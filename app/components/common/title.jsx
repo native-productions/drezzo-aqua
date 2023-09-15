@@ -11,7 +11,7 @@ function Title({ children, withoutDropShadow = false, ...props }) {
         ...props.style,
       }}
       className={cn(
-        'pt-1.5 text-5xl text-[#FFB0F6]',
+        'pt-1.5 text-2xl text-[#FFB0F6] md:text-5xl',
         props.className,
         fontBungee.base.className,
       )}

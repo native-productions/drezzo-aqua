@@ -2,7 +2,7 @@
 
 /* eslint-disable jsx-a11y/media-has-caption */
 
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { HeartFilledIcon } from '@radix-ui/react-icons'
 import { cn } from '@/lib/utils/view'
@@ -32,21 +32,23 @@ function VideoCard({ playable = false, modalOpen = false }) {
       video.currentTime = 2
     }
 
-    if (video.readyState === 1) {
+    if (videoRef?.current?.readyState === 1) {
       setShowVideo(true)
     }
+
+    console.log('@videoReadyState =>', video.readyState)
 
     return () => {
       video.currentTime = 2
     }
-  }, [playable, modalOpen])
+  }, [playable, modalOpen, videoRef?.current?.readyState])
 
   return (
     <Card
       className={cn(
         'relative grid place-content-center overflow-hidden rounded-3xl border-none',
         playable ? 'h-full w-full' : 'max-h-[465px]',
-        showVideo && playable ? 'opacity-100' : 'h-[400px] animate-pulse',
+        showVideo || playable ? 'opacity-100' : 'h-[400px] animate-pulse',
       )}
     >
       <video
@@ -55,6 +57,7 @@ function VideoCard({ playable = false, modalOpen = false }) {
         className="relative z-30 rounded-md"
         ref={videoRef}
         controls={playable}
+        id="teaser-video"
       >
         <source
           src="https://storage.googleapis.com/drezzo/videos/VIDEO%20PROFIL%20DREZZO.mp4"

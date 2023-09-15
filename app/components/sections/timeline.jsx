@@ -4,8 +4,10 @@ import Image from 'next/image'
 
 function TimelineSection() {
   return (
-    <section id="timeline" className="space-y-12 pb-6">
-      <Title>Timeline of competition</Title>
+    <section id="timeline" className="space-y-12 pb-6 pt-3 md:pt-0">
+      <Title className="mx-auto text-center md:text-left">
+        Timeline of competition
+      </Title>
       <Image
         src="/images/timeline.png"
         alt="drezzo community gallery"
@@ -15,13 +17,16 @@ function TimelineSection() {
         height={253}
       />
       <div>
-        <Title className="text-4xl text-white" withoutDropShadow>
+        <Title
+          className="text-2xl text-white md:text-left md:text-4xl"
+          withoutDropShadow
+        >
           finalist rules
         </Title>
-        <p className="mt-2 text-2xl text-[#e8e6e3ac]">
+        <p className="mt-2 text-lg text-[#e8e6e3ac] md:text-2xl">
           We will choose 10 finalist only for the competition
         </p>
-        <ul className="ml-8 w-full list-outside list-disc text-2xl text-[#e8e6e3ac] [&>li]:w-full">
+        <ul className="w-full list-inside list-disc text-lg text-[#e8e6e3ac] md:ml-8 md:list-outside md:text-2xl [&>li]:w-full">
           <li>
             Finalist will be notified by Telegram or through the contact
             information provided during the entry submission process

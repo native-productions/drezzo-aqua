@@ -28,8 +28,8 @@ const prizesContent = [
 function PrizesSection() {
   return (
     <section id="prizes">
-      <Title>WIN THE PRIZES</Title>
-      <div className="mt-8 grid grid-cols-3 gap-8">
+      <Title className="mx-auto text-center md:text-left">WIN THE PRIZES</Title>
+      <div className="mt-8 flex w-full flex-col items-center gap-4 md:grid md:grid-cols-3 md:gap-8">
         {prizesContent.map((prize) => (
           <TrophyCard
             key={prize.id}
@@ -48,16 +48,22 @@ function TrophyCard({ id, title, desc, img }) {
   return (
     <div
       className={cn(
-        'h-[400px] w-[400px] rounded-2xl bg-border-blue-linear-gradient p-0.5',
-        (id === 2 || id === 3) && 'scale-90',
+        'h-[300px] w-[300px] rounded-2xl bg-border-blue-linear-gradient p-0.5 md:h-[400px] md:w-[400px]',
+        (id === 2 || id === 3) && 'md:scale-90',
       )}
     >
       <div className="nft-preview-dark grid h-full place-content-center rounded-2xl text-center">
         <div className="flex flex-col items-center justify-center">
-          <Image src={img} width={210} height={170} alt={title} />
+          <Image
+            src={img}
+            width={210}
+            height={170}
+            alt={title}
+            className="max-w-[130px] md:max-w-none"
+          />
           <h1
             className={cn(
-              'mb-2 text-2xl font-bold text-white',
+              'mb-2 text-lg font-bold text-white md:text-2xl',
               fontBungee.base.className,
             )}
           >
@@ -65,7 +71,7 @@ function TrophyCard({ id, title, desc, img }) {
           </h1>
           <p
             className={cn(
-              'px-4 text-lg text-[#e8e6e3ac]',
+              'px-4 text-sm text-[#e8e6e3ac] md:text-lg',
               fontInter.base.className,
             )}
           >
