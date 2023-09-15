@@ -28,19 +28,14 @@ export const projectFormSchema = z.object({
       message: 'Project name must be at most 50 characters',
     }),
   listProjectMember: z.any(),
-  nationality: z.string().min(2).max(50),
-  email: z.string().email({
-    message: 'Invalid email address',
-  }),
-  telegram: z.string().min(2).max(50),
-  whereDoYouKnow: z
-    .string()
-    .min(1, {
-      message: 'Where do you know must be at least 1 characters',
-    })
-    .max(50, {
-      message: 'Where do you know must be at most 50 characters',
+  nationality: z.optional(z.string()),
+  email: z.optional(
+    z.string().email({
+      message: 'Invalid email address',
     }),
+  ),
+  telegram: z.optional(z.string().min(2).max(50)),
+  whereDoYouKnow: z.optional(z.string()),
   file: fileSchema,
 })
 

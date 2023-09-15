@@ -9,13 +9,12 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "add:ui": "pnpm dlx shadcn-ui@latest add",
-    "env:set": "pnpm dlx dotenv -e .env.local",
     "env:pull": "pnpm dlx vercel env pull",
     "db:prepare": "pnpm lint:fix && pnpm db:generate",
     "db:generate": "pnpm dlx prisma generate",
     "db:pull": "pnpm dlx prisma db pull",
-    "db:migrate:dev": "pnpm dlx prisma migrate dev",
-    "db:migrate:deploy": "pnpm dlx prisma migrate deploy --preview-feature"
+    "db:migrate:dev": "cp .env.local .env && pnpm dlx prisma migrate dev && rm .env",
+    "db:migrate:deploy": "cp .env.local .env && pnpm dlx prisma migrate deploy --preview-feature && rm .env"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",

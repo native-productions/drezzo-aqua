@@ -45,27 +45,48 @@ export default function SubmitForm() {
     const file = blob[0]
     const datas = { ...data, listProjectMember: members, file }
 
-    try {
-      const formData = new FormData()
-
-      Object.keys(datas).forEach((key) => {
-        if (key === 'file') {
-          formData.append(key, datas[key])
-        } else {
-          formData.append(key, JSON.stringify(datas[key]))
-        }
+    if (!data.email && !data.telegram) {
+      form.setError('telegram', {
+        type: 'custom',
+        message: 'Please fill at least one contact',
       })
+      return
+    }
 
+    if (
+      data.listProjectMember.length === 0 ||
+      !data.listProjectMember[0].member
+    ) {
+      form.setError('listProjectMember', {
+        type: 'custom',
+        message: 'Please fill at least one member',
+      })
+      return
+    }
+
+    const formData = new FormData()
+
+    Object.keys(datas).forEach((key) => {
+      if (key === 'file') {
+        formData.append(key, datas[key])
+      } else {
+        formData.append(key, JSON.stringify(datas[key]))
+      }
+    })
+
+    try {
       setLoading(true)
 
       await submitProject(formData, file.name)
 
       toast({
-        title: 'Success',
-        description: 'Project submitted successfully',
+        title: 'Thanks for submitting your project 🎉',
+        description:
+          'Project submitted successfully ✅, we will review it soon',
         status: 'success',
         duration: 5000,
       })
+
       setLoading(false)
 
       setTimeout(() => {
@@ -144,7 +165,7 @@ export default function SubmitForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
         {Object.keys(projectFormSchema.shape).map((key) => (
           <FormField
             key={key}
@@ -197,7 +218,7 @@ export default function SubmitForm() {
                             )}
                           />
 
-                          {fields.length > 2 && (
+                          {fields.length > 1 && (
                             <TrashIcon
                               onClick={() => remove(index)}
                               className="h-8 w-9 rounded-full bg-red-500 p-1.5 text-white"

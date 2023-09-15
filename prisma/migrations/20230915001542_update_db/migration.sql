@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Projects" ALTER COLUMN "nationality" DROP NOT NULL,
+ALTER COLUMN "email" DROP NOT NULL,
+ALTER COLUMN "telegram" DROP NOT NULL,
+ALTER COLUMN "whereDoYouKnow" DROP NOT NULL;

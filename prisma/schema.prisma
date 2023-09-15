@@ -15,12 +15,25 @@ model Projects {
   id                 String    @id @default(uuid())
   projectName        String
   members            String[]
-  nationality        String
-  email              String    @unique
-  telegram           String
-  whereDoYouKnow     String    @default("Other")
-  projectFilePath    String
+  nationality        String?
+  email              String?   @unique
+  telegram           String?
+  whereDoYouKnow     String?   @default("Other")
+  file               Files[]
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
   deletedAt          DateTime?
+  @@map("project")
+}
+
+model Files {
+  id                 String    @id @default(uuid())
+  fileName           String
+  url                String
+  project            Projects  @relation(fields: [projectId], references: [id])
+  projectId          String
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  deletedAt          DateTime?
+  @@map("file")
 }
