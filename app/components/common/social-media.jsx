@@ -4,31 +4,31 @@ const socialMedia = [
   {
     id: 1,
     name: 'instagram',
-    url: '',
+    url: 'https://www.instagram.com/drezzo.io/',
     icon: '/svgs/instagram.svg',
   },
   {
     id: 2,
     name: 'tiktok',
-    url: '',
+    url: 'https://www.tiktok.com/@drezzo.io',
     icon: '/svgs/tiktok.svg',
   },
   {
     id: 3,
     name: 'x',
-    url: '',
+    url: 'https://twitter.com/Drezzo_io',
     icon: '/svgs/x.svg',
   },
   {
     id: 4,
     name: 'facebook',
-    url: '',
+    url: 'https://www.facebook.com/profile.php?id=100088567615028',
     icon: '/svgs/facebook.svg',
   },
   {
     id: 5,
     name: 'telegram',
-    url: '',
+    url: 'https://t.me/drezzoofficial',
     icon: '/svgs/telegram.svg',
   },
 ]

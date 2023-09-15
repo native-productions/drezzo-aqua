@@ -50,7 +50,9 @@ function MultipleUploader({
                   ? 'Unable to upload file'
                   : 'Upload a file or drag and drop'}
               </h1>
-              <p className="text-xs font-normal">PNG, JPG, GIF up to 10MB</p>
+              <p className="text-xs font-normal">
+                Your NFTs sample (in ZIP or RAR)
+              </p>
             </div>
           </div>
         </div>
@@ -66,7 +68,7 @@ function MultipleUploader({
             >
               {file.path} - {file.size} bytes
               <Button size="sm" onClick={() => handleRemoveFile(file.path)}>
-                Hapus
+                Delete
               </Button>
             </li>
           ))}

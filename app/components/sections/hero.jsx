@@ -35,14 +35,14 @@ function HeroSection() {
             PROJECT
           </p>
         </div>
-        <DrezzoButton
+        {/* <DrezzoButton
           onClick={() => push('/submit')}
           size="lg"
           className="text-lg"
           borderClassName="my-3 md:-0"
         >
           SUBMIT NOW!
-        </DrezzoButton>
+        </DrezzoButton> */}
       </div>
     </section>
   )

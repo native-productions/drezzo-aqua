@@ -18,6 +18,7 @@
     "db:migrate:deploy": "cp .env.local .env && pnpm dlx prisma migrate deploy --preview-feature && rm .env"
   },
   "dependencies": {
+    "@google-cloud/storage": "^7.1.0",
     "@heroicons/react": "^2.0.18",
     "@hookform/resolvers": "^3.3.1",
     "@prisma/client": "^5.3.0",

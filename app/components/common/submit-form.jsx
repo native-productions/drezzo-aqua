@@ -243,7 +243,7 @@ export default function SubmitForm() {
                 )}
                 {key === 'file' && (
                   <MultipleUploader
-                    accept="jpg,png,gif"
+                    accept="*"
                     onDrop={onDrop}
                     files={blob}
                     handleRemoveFile={handleRemoveFile}

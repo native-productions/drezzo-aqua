@@ -7,14 +7,9 @@ const fileSchema = z
     message: 'File must be a File object',
   })
   .refine(
-    (value) => {
-      const allowedExtensions = ['jpg', 'png', 'gif']
-      const extension = value.name.split('.').pop()
-
-      return allowedExtensions.includes(extension)
-    },
+    () => true,
     {
-      message: 'File must be a JPG, PNG, or GIF',
+      message: 'File must be a valid file type',
     },
   )
 
