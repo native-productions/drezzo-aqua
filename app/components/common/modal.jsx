@@ -35,13 +35,13 @@ function BaseModal({
     <animated.aside
       {...props}
       style={animation}
-      className="fixed z-50 flex h-screen w-screen items-center justify-center bg-black/70 px-6 xl:px-0"
+      className="fixed z-50 flex h-screen w-screen items-center justify-center overflow-y-scroll bg-black/70 px-6 py-5 xl:px-0"
       id="modal"
     >
       <animated.div
         style={modalAnimation}
         className={cn(
-          'z-50 w-full max-w-lg rounded-3xl bg-[#cdd0d5] text-base text-[#2d2b2b]',
+          'z-50 w-full max-w-lg rounded-2xl bg-[#cdd0d5] text-base text-[#2d2b2b]',
           props.className,
         )}
       >

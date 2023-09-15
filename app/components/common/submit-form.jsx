@@ -176,7 +176,7 @@ export default function SubmitForm() {
                 <FormControl>
                   {isBasicInput(key) && (
                     <Input
-                      className="text-white"
+                      className="text-xs text-white md:text-base"
                       type={key === 'email' ? 'email' : 'text'}
                       placeholder={capitalize(field.name)}
                       onChange={(e) => {
@@ -210,7 +210,7 @@ export default function SubmitForm() {
                       <Fragment key={item.id}>
                         <div className="flex items-center space-x-2">
                           <Input
-                            className="text-white"
+                            className="text-xs text-white md:text-base"
                             type="text"
                             placeholder={capitalize(field.name)}
                             {...form.register(
@@ -229,8 +229,9 @@ export default function SubmitForm() {
                           <DrezzoButton
                             loading={loading}
                             borderClassName="w-full hover:scale-100"
-                            className="w-full"
                             type="button"
+                            className="w-full text-sm md:text-base"
+                            size="sm"
                             onClick={handleAdd}
                           >
                             Add
@@ -254,7 +255,12 @@ export default function SubmitForm() {
             )}
           />
         ))}
-        <DrezzoButton loading={loading} type="submit">
+        <DrezzoButton
+          className="text-sm md:text-base"
+          size="sm"
+          loading={loading}
+          type="submit"
+        >
           Submit
         </DrezzoButton>
       </form>

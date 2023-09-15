@@ -29,7 +29,7 @@ export default function Combobox({ items, name, onSelect }) {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-full justify-between text-white"
+          className="w-full justify-between text-xs text-white md:text-base"
         >
           {value
             ? capitalize(

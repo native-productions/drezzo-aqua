@@ -28,16 +28,22 @@ function MultipleUploader({
         <div
           {...getRootProps()}
           className={cn(
-            'hover:bg-rgba05 mx-auto flex h-52 w-full items-center justify-center rounded-lg border p-3 text-center font-medium hover:cursor-pointer hover:border-stone-500',
+            'hover:bg-rgba05 mx-auto flex h-32 w-full items-center justify-center rounded-lg border p-1.5 text-center font-medium hover:cursor-pointer hover:border-stone-500 md:h-52 md:p-3',
             isDragAccept && 'bg-63b border-2 border-white font-bold text-white',
           )}
         >
           <input {...getInputProps()} />
 
-          <div className="flex flex-col items-center justify-center gap-y-6">
-            <Image src="/svgs/image.svg" width={36} height={28} alt="img" />
+          <div className="flex flex-col items-center justify-center gap-y-3 md:gap-y-6">
+            <Image
+              src="/svgs/image.svg"
+              className="max-w-[20px] md:max-w-none"
+              width={36}
+              height={28}
+              alt="img"
+            />
             <div className="flex flex-col gap-y-2">
-              <h1 className="text-base text-white">
+              <h1 className="text-sm text-white md:text-base">
                 {isDragAccept
                   ? 'File will be uploaded'
                   : isDragReject
@@ -59,7 +65,9 @@ function MultipleUploader({
               className="flex items-center justify-between gap-5 p-1"
             >
               {file.path} - {file.size} bytes
-              <Button onClick={() => handleRemoveFile(file.path)}>Hapus</Button>
+              <Button size="sm" onClick={() => handleRemoveFile(file.path)}>
+                Hapus
+              </Button>
             </li>
           ))}
         </ul>
