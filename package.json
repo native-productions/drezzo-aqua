@@ -10,7 +10,7 @@
     "lint:fix": "next lint --fix",
     "add:ui": "pnpm dlx shadcn-ui@latest add",
     "env:pull": "pnpm dlx vercel env pull",
-    "prepare:dev": "vercel login --github && vercel link && vercel env pull .env.local && cp .env.local .env && pnpm db:pull && pnpm db:generate && rm .env",
+    "prepare:dev": "pnpm install && vercel login --github && vercel link && vercel env pull .env.local && cp .env.local .env && pnpm db:pull && pnpm db:generate && rm .env",
     "db:prepare": "pnpm lint:fix && pnpm db:generate",
     "db:generate": "pnpm dlx prisma generate",
     "db:pull": "pnpm dlx prisma db pull",
