@@ -1,39 +1,38 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "postgresql"
-  url = env("POSTGRES_PRISMA_URL") // uses connection pooling
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model Projects {
-  id                 String    @id @default(uuid())
-  projectName        String
-  members            String[]
-  nationality        String?
-  email              String?   @unique
-  telegram           String?
-  whereDoYouKnow     String?   @default("Other")
-  file               Files[]
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
-  deletedAt          DateTime?
+  id             String    @id @default(uuid())
+  projectName    String
+  members        String[]
+  nationality    String?
+  email          String?   @unique
+  telegram       String?
+  whereDoYouKnow String?   @default("Other")
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  deletedAt      DateTime?
+  file           Files[]
+
   @@map("project")
 }
 
 model Files {
-  id                 String    @id @default(uuid())
-  fileName           String
-  url                String
-  project            Projects  @relation(fields: [projectId], references: [id])
-  projectId          String
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
-  deletedAt          DateTime?
+  id        String    @id @default(uuid())
+  fileName  String
+  url       String
+  projectId String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  project   Projects  @relation(fields: [projectId], references: [id])
+
   @@map("file")
 }
