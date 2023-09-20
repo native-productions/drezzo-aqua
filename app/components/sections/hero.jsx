@@ -5,12 +5,8 @@ import Image from 'next/image'
 import VideoCard from '@/components/common/video-card'
 import { fontBungee, fontInter, fontRubik } from '@/styles/fonts'
 import { cn, createDropshadow } from '@/lib/utils/view'
-import DrezzoButton from '@/components/common/drezzo-button'
-import { useRouter } from 'next/navigation'
 
 function HeroSection() {
-  const { push } = useRouter()
-
   return (
     <section className="flex flex-col space-y-3">
       <VideoCard />
@@ -35,14 +31,6 @@ function HeroSection() {
             PROJECT
           </p>
         </div>
-        {/* <DrezzoButton
-          onClick={() => push('/submit')}
-          size="lg"
-          className="text-lg"
-          borderClassName="my-3 md:-0"
-        >
-          SUBMIT NOW!
-        </DrezzoButton> */}
       </div>
     </section>
   )

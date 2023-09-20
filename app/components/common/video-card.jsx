@@ -2,16 +2,17 @@
 
 /* eslint-disable jsx-a11y/media-has-caption */
 
-import React, { useRef, useEffect } from 'react'
+import React from 'react'
 import Link from 'next/link'
-import { HeartFilledIcon } from '@radix-ui/react-icons'
 import { cn } from '@/lib/utils/view'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { HeartFilledIcon } from '@radix-ui/react-icons'
+import Image from 'next/image'
 
 function VideoCard({ playable = false, modalOpen = false }) {
   const [showVideo, setShowVideo] = React.useState(false)
-  const videoRef = useRef(null)
+  const videoRef = React.useRef(null)
 
   const handlePlay = () => {
     videoRef.current.play()
@@ -36,25 +37,33 @@ function VideoCard({ playable = false, modalOpen = false }) {
       setShowVideo(true)
     }
 
-    console.log('@videoReadyState =>', video.readyState)
+    console.log('@videoReadyState =>', video.readyState) // Remove this
 
     return () => {
       video.currentTime = 2
     }
-  }, [playable, modalOpen, videoRef?.current?.readyState])
+  }, [playable, modalOpen])
 
   return (
     <Card
       className={cn(
         'relative grid place-content-center overflow-hidden rounded-3xl border-none',
-        playable ? 'h-full w-full' : 'max-h-[465px]',
-        showVideo || playable ? 'opacity-100' : 'h-[400px] animate-pulse',
+        showVideo || playable
+          ? 'h-full w-full opacity-100 md:max-h-[465px]'
+          : 'h-56 md:h-[465px] md:animate-pulse',
       )}
     >
       <video
-        // onPlaying={() => setPlaying(true)}
-        // onEnded={() => setPlaying(false)}
-        className="relative z-30 rounded-md"
+        className={cn(
+          'relative z-30 rounded-md',
+          !showVideo && 'animate-pulse',
+        )}
+        onCanPlay={(e) => {
+          if (!showVideo) {
+            e.target.currentTime = 2
+            setShowVideo(true)
+          }
+        }}
         ref={videoRef}
         controls={playable}
         id="teaser-video"
@@ -64,6 +73,13 @@ function VideoCard({ playable = false, modalOpen = false }) {
           type="video/mp4"
         />
       </video>
+      <Image
+        src="/images/thumbnail.jpg"
+        alt="Teaser Poster"
+        layout="fill"
+        objectFit="cover"
+        className="absolute z-20"
+      />
       {!playable && showVideo && (
         <Button className="absolute bottom-5 left-5 z-40 rounded-full bg-transparent text-white backdrop-blur-lg">
           <Link href="/teaser" className="flex items-center space-x-2">
