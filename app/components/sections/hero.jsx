@@ -11,15 +11,27 @@ function HeroSection() {
     <section className="flex flex-col space-y-3">
       <VideoCard />
       <TextNftProject />
-      <div className="flex w-full -translate-y-6 items-center space-x-1 md:-translate-y-0 md:justify-between">
+      <div className="flex w-full -translate-y-6 items-center md:-translate-y-0 md:justify-between">
         <TextCompetition />
-        <Text2023 />
+        <Text2023 className="md:hidden" />
       </div>
+      <p
+        style={{
+          textShadow: createDropshadow('#ffb0d9'),
+        }}
+        className={cn(
+          '-translate-y-10 font-bold text-gray-200 md:-translate-y-0 md:text-xl',
+          fontBungee.base.className,
+        )}
+      >
+        WIN AN EXCLUSIVE CHANCE TO INVESTOR MEET UP AND TRAVEL IN PHUKET,
+        THAILAND (3 DAYS 2 NIGHTS)
+      </p>
       <TextPresentedBy />
       <div className="flex w-full -translate-y-8 flex-col justify-between md:-translate-y-0 md:flex-row md:items-center">
         <div className="text-[#e8e6e3ac]">
           <p className={cn(fontRubik.bold.className, 'text-xl md:text-3xl')}>
-            SELECT YOUR PROJECT AND REGISTER HERE!
+            SUBMIT YOUR NFT PROJECT
           </p>
           <p
             className={cn(
@@ -27,8 +39,8 @@ function HeroSection() {
               'max-w-2xl text-sm md:text-2xl',
             )}
           >
-            NFT ART PROJECT, NFT PROJECT WITH UTILITIES & DIGITAL FASHION NFTs
-            PROJECT
+            REAL ESTATE, HEALTH ENTERTAINMENT, PFP, 1/1, ART, DIGITAL FASHION,
+            GAMING, AND OTHERS
           </p>
         </div>
       </div>
@@ -59,18 +71,18 @@ function TextCompetition() {
         textShadow: createDropshadow('#ffb0d9', 0.7),
       }}
       className={cn(
-        'text-[2.7rem] text-white md:text-[9.2rem] md:leading-[0.80]',
+        'flex text-[2.7rem] text-white md:break-all md:text-[8.2rem] md:leading-[0.80] lg:text-[9.2rem] xl:break-normal',
         fontBungee.inline.className,
       )}
     >
-      Competition
+      <span>Competition</span> <Text2023 className="hidden md:block" />
     </h1>
   )
 }
 
-function Text2023() {
+function Text2023({ props, className }) {
   return (
-    <div>
+    <div {...props} className={cn(className)}>
       <h1
         style={{
           textShadow: createDropshadow('#9051D4', 0.7),
@@ -99,7 +111,7 @@ function Text2023() {
 
 function TextPresentedBy() {
   return (
-    <div className="flex -translate-y-14 items-center justify-start space-x-2 md:-translate-y-2 md:translate-x-4 md:justify-end">
+    <div className="flex -translate-y-14 flex-col justify-start pt-4 md:-translate-y-2 md:translate-x-4 md:flex-row md:items-center md:justify-end md:space-x-2 md:pt-0">
       <h1
         style={{
           textShadow: createDropshadow('#ffb0d9'),
@@ -111,27 +123,19 @@ function TextPresentedBy() {
       >
         Presented By
       </h1>
-      <div className="flex items-center">
+      <div className="flex w-full items-center justify-center md:w-max md:justify-end">
         <Image
           src="/logos/drezzo-logo.png"
           alt="Drezzo Logo"
-          width={
-            (globalThis.window && globalThis.window?.innerWidth) > 768
-              ? 100
-              : 50 || 100
-          }
-          height={70}
+          width={120}
+          height={0}
         />
         <span className="text-lg text-[#8A939E]">X</span>
         <Image
           src="/logos/aquacity-logo.png"
           alt="Drezzo Logo"
-          width={
-            (globalThis.window && globalThis.window?.innerWidth) > 768
-              ? 100
-              : 50 || 100
-          }
-          height={70}
+          width={120}
+          height={0}
         />
       </div>
     </div>

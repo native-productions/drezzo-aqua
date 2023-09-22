@@ -14,52 +14,42 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { useFieldArray, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { projectFormSchema, whereDoYouKnowOptions } from '@/lib/constants/forms'
 import { submitProject } from '@/lib/server/actions/project.action'
 import { capitalize } from '@/lib/utils/view'
-import { useState, useEffect, Fragment } from 'react'
-import { TrashIcon } from '@radix-ui/react-icons'
+import { useState } from 'react'
+import { FileIcon } from '@radix-ui/react-icons'
 import { countriesOptions } from '@/lib/constants/nationality'
 import { useRouter } from 'next/navigation'
 import { useToast } from '../ui/use-toast'
 import MultipleUploader from './multiple-uploader'
 import DrezzoButton from './drezzo-button'
 import Combobox from './combobox'
+import CheckboxComponent from './checkbox'
 
 export default function SubmitForm() {
   const { back } = useRouter()
   const { toast } = useToast()
-  const [blob, setBlob] = useState([])
+  const [blob, setBlob] = useState({
+    proposal: [],
+    file: [],
+  })
   const [loading, setLoading] = useState(false)
   const form = useForm({
     resolver: zodResolver(projectFormSchema),
   })
-  const { fields, append, remove } = useFieldArray({
-    control: form.control,
-    name: 'listProjectMember',
-  })
 
   const onSubmit = async (data) => {
-    const members = data.listProjectMember.map((item) => item.member)
-    const file = blob[0]
-    const datas = { ...data, listProjectMember: members, file }
+    const proposal = blob.proposal[0]
+    const file = blob.file[0]
+
+    const datas = { ...data, file, proposal }
 
     if (!data.email && !data.telegram) {
       form.setError('telegram', {
         type: 'custom',
         message: 'Please fill at least one contact',
-      })
-      return
-    }
-
-    if (
-      data.listProjectMember.length === 0 ||
-      !data.listProjectMember[0].member
-    ) {
-      form.setError('listProjectMember', {
-        type: 'custom',
-        message: 'Please fill at least one member',
       })
       return
     }
@@ -77,7 +67,7 @@ export default function SubmitForm() {
     try {
       setLoading(true)
 
-      await submitProject(formData, file.name)
+      await submitProject(formData, proposal.name, file.name)
 
       toast({
         title: 'Thanks for submitting your project 🎉',
@@ -125,10 +115,19 @@ export default function SubmitForm() {
     }
   }
 
-  const onDrop = (acceptedBlob) => {
+  const onDrop = (acceptedBlob, key) => {
     const file = acceptedBlob[0]
 
     const blobizeInMB = Number(file.size / 1024 / 1024).toFixed(2)
+
+    if (file.type !== `application/${key === 'file' ? 'zip' : 'pdf'}`) {
+      toast({
+        description: `File must be ${key === 'file' ? 'ZIP' : 'PDF'}`,
+        status: 'error',
+        duration: 5000,
+      })
+      return
+    }
 
     if (file.size > 10000000) {
       toast({
@@ -140,28 +139,23 @@ export default function SubmitForm() {
       return
     }
 
-    setBlob(acceptedBlob)
-
-    form.setValue('file', acceptedBlob[0])
+    setBlob((prev) => ({ ...prev, [key]: acceptedBlob }))
+    form.setValue(key, acceptedBlob[0])
   }
 
-  const handleRemoveFile = (path) => {
-    setBlob(blob.filter((file) => file.path !== path))
-  }
-
-  const handleAdd = () => {
-    append('')
+  const handleRemoveFile = (key) => {
+    setBlob((prev) => ({ ...prev, [key]: [] }))
   }
 
   const isBasicInput = (key) =>
     key !== 'file' &&
     key !== 'listProjectMember' &&
     key !== 'nationality' &&
-    key !== 'whereDoYouKnow'
+    key !== 'whereDoYouKnow' &&
+    key !== 'agreement' &&
+    key !== 'proposal'
 
-  useEffect(() => {
-    append('')
-  }, [])
+  console.log(form.watch())
 
   return (
     <Form {...form}>
@@ -178,7 +172,11 @@ export default function SubmitForm() {
                     <Input
                       className="text-xs text-white md:text-base"
                       type={key === 'email' ? 'email' : 'text'}
-                      placeholder={capitalize(field.name)}
+                      placeholder={
+                        key !== 'idType'
+                          ? capitalize(field.name)
+                          : 'Type of ID: Identity, Passport, or related'
+                      }
                       onChange={(e) => {
                         field.onChange(e.target.value)
                       }}
@@ -204,50 +202,33 @@ export default function SubmitForm() {
                     }}
                   />
                 )}
-                {key === 'listProjectMember' && (
-                  <div className="scrollbar-hide relative flex h-auto max-h-[150px] w-full flex-col space-y-3 overflow-x-hidden overflow-y-scroll">
-                    {fields.map((item, index) => (
-                      <Fragment key={item.id}>
-                        <div className="flex items-center space-x-2">
-                          <Input
-                            className="text-xs text-white md:text-base"
-                            type="text"
-                            placeholder={capitalize(field.name)}
-                            {...form.register(
-                              `listProjectMember.${index}.member`,
-                            )}
-                          />
-
-                          {fields.length > 1 && (
-                            <TrashIcon
-                              onClick={() => remove(index)}
-                              className="h-8 w-9 rounded-full bg-red-500 p-1.5 text-white"
-                            />
-                          )}
-                        </div>
-                        {index === fields.length - 1 && (
-                          <DrezzoButton
-                            loading={loading}
-                            borderClassName="w-full hover:scale-100"
-                            type="button"
-                            className="w-full text-sm md:text-base"
-                            size="sm"
-                            onClick={handleAdd}
-                          >
-                            Add
-                          </DrezzoButton>
-                        )}
-                      </Fragment>
-                    ))}
-                  </div>
+                {key === 'proposal' && (
+                  <MultipleUploader
+                    accept=".zip"
+                    onDrop={(e) => onDrop(e, 'proposal')}
+                    files={blob?.proposal}
+                    icon={<FileIcon className="h-8 w-8" />}
+                    handleRemoveFile={() => handleRemoveFile('proposal')}
+                    maxFiles={1}
+                    label="Proposal PDF"
+                  />
                 )}
                 {key === 'file' && (
                   <MultipleUploader
-                    accept="*"
-                    onDrop={onDrop}
-                    files={blob}
-                    handleRemoveFile={handleRemoveFile}
+                    accept=".zip"
+                    onDrop={(e) => onDrop(e, 'file')}
+                    files={blob?.file}
+                    icon={<FileIcon className="h-8 w-8" />}
+                    handleRemoveFile={() => handleRemoveFile('file')}
                     maxFiles={1}
+                    label="Your NFTs assets (in ZIP)"
+                  />
+                )}
+                {key === 'agreement' && (
+                  <CheckboxComponent
+                    onCheckedChange={field.onChange}
+                    {...field}
+                    label="By clicking this button you agree to comply with these Terms and any other rules or guidelines provided by the organizers of the Competition"
                   />
                 )}
                 <FormMessage />

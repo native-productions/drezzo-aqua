@@ -6,12 +6,9 @@ const fileSchema = z
   .custom((value) => value instanceof File, {
     message: 'File must be a File object',
   })
-  .refine(
-    () => true,
-    {
-      message: 'File must be a valid file type',
-    },
-  )
+  .refine(() => true, {
+    message: 'File must be a valid file type',
+  })
 
 export const projectFormSchema = z.object({
   projectName: z
@@ -22,7 +19,14 @@ export const projectFormSchema = z.object({
     .max(50, {
       message: 'Project name must be at most 50 characters',
     }),
-  listProjectMember: z.any(),
+  picName: z
+    .string()
+    .min(2, {
+      message: 'PIC name must be at least 2 characters',
+    })
+    .optional(),
+  typeOfIdentitiy: z.optional(z.string()),
+  identityNumber: z.optional(z.string()),
   nationality: z.optional(z.string()),
   email: z.optional(
     z.string().email({
@@ -31,7 +35,9 @@ export const projectFormSchema = z.object({
   ),
   telegram: z.optional(z.string().min(2).max(50)),
   whereDoYouKnow: z.optional(z.string()),
+  proposal: fileSchema,
   file: fileSchema,
+  agreement: z.optional(z.boolean()),
 })
 
 export const whereDoYouKnowOptions = [

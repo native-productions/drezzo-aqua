@@ -41,7 +41,7 @@ function BaseModal({
       <animated.div
         style={modalAnimation}
         className={cn(
-          'z-50 w-full max-w-lg rounded-2xl bg-[#cdd0d5] text-base text-[#2d2b2b]',
+          'z-50 h-auto w-full max-w-lg rounded-2xl bg-[#cdd0d5] text-base text-[#2d2b2b]',
           props.className,
         )}
       >

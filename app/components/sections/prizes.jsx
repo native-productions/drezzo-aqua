@@ -8,19 +8,19 @@ const prizesContent = [
   {
     id: 2,
     title: '2ND WINNER',
-    desc: '500 USD WORTH OF AQUACITY TOKEN',
+    desc: 'VALUE WORTH 500 USD AQUACITY TOKEN Investor Meetup and Travelling at Phuket, Thailand',
     img: '/icons/silver.png',
   },
   {
     id: 1,
     title: '1ST WINNER',
-    desc: `BUSINESS TRIP TO PHUKET, THAILAND (VALUE OF 1000 USD) & 1000 USD WORTH -OF AQUACITY TOKEN`,
+    desc: `VALUE WORTH 1000 USD AQUACITY TOKEN Investor Meetup and Travelling at Phuket, Thailand `,
     img: '/icons/gold.png',
   },
   {
     id: 3,
     title: '3RD WINNER',
-    desc: '100 USD WORTH OF AQUACITY TOKEN',
+    desc: 'VALUE WORTH 100 USD AQUACITY TOKEN Investor Meetup and Travelling at Phuket, Thailand',
     img: '/icons/bronze.png',
   },
 ]

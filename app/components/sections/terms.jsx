@@ -32,7 +32,7 @@ function TermsSection() {
     <section id="terms-and-conditions">
       <header className="space-y-4">
         <Title className="mx-auto text-center md:text-left">
-          TERMS AND CONDITION
+          TERMS AND CONDITION:
         </Title>
         <p
           className={cn(
@@ -166,7 +166,7 @@ function TermsSection() {
         />
         <div className="mt-6 space-y-6 md:mt-0 md:w-1/2">
           <div className="flex flex-col justify-start">
-            <Title className="text-2xl md:text-3xl">judging</Title>
+            <Title className="text-2xl md:text-3xl">judging:</Title>
             <ul className="ml-4 mt-2 list-decimal text-sm text-[#e8e6e3ac] md:text-lg">
               <li>
                 Entries will be judged based on creativity, originality,
@@ -179,7 +179,7 @@ function TermsSection() {
               <li>The decisions of the judges are final and binding.</li>
             </ul>
           </div>
-          <div className="flex flex-col justify-start">
+          {/* <div className="flex flex-col justify-start">
             <Title
               withoutDropShadow
               className="text-2xl text-white md:text-3xl"
@@ -190,7 +190,7 @@ function TermsSection() {
               All NFT project competitions are agree to be minted on platforms
               owned by DREZZO or associated platforms.
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

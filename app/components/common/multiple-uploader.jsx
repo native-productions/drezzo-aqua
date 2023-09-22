@@ -13,6 +13,8 @@ function MultipleUploader({
   files,
   handleRemoveFile,
   maxFiles,
+  icon,
+  label,
 }) {
   const { getRootProps, getInputProps, isDragAccept, isDragReject } =
     useDropzone({
@@ -28,31 +30,31 @@ function MultipleUploader({
         <div
           {...getRootProps()}
           className={cn(
-            'hover:bg-rgba05 mx-auto flex h-32 w-full items-center justify-center rounded-lg border p-1.5 text-center font-medium hover:cursor-pointer hover:border-stone-500 md:h-52 md:p-3',
+            'hover:bg-rgba05 mx-auto flex h-28 w-full items-center justify-center rounded-lg border p-1.5 text-center font-medium hover:cursor-pointer hover:border-stone-500 md:h-40 md:p-3',
             isDragAccept && 'bg-63b border-2 border-white font-bold text-white',
           )}
         >
           <input {...getInputProps()} />
 
-          <div className="flex flex-col items-center justify-center gap-y-3 md:gap-y-6">
-            <Image
-              src="/svgs/image.svg"
-              className="max-w-[20px] md:max-w-none"
-              width={36}
-              height={28}
-              alt="img"
-            />
+          <div className="flex flex-col items-center justify-center gap-y-3 md:scale-90 md:gap-y-6">
+            {icon || (
+              <Image
+                src="/svgs/image.svg"
+                className="max-w-[20px] md:max-w-none"
+                width={36}
+                height={28}
+                alt="img"
+              />
+            )}
             <div className="flex flex-col gap-y-2">
-              <h1 className="text-sm text-white md:text-base">
+              <h1 className="text-xs text-white md:text-base">
                 {isDragAccept
                   ? 'File will be uploaded'
                   : isDragReject
                   ? 'Unable to upload file'
                   : 'Upload a file or drag and drop'}
               </h1>
-              <p className="text-xs font-normal">
-                Your NFTs sample (in ZIP or RAR)
-              </p>
+              <p className="text-xs font-normal">{label}</p>
             </div>
           </div>
         </div>

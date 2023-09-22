@@ -7,12 +7,12 @@
 import { put } from '@vercel/blob'
 import { prisma } from '../prisma'
 
-export const submitProject = async (formData, fileName) => {
-  const blob = formData.get('file')
-
+export const submitProject = async (formData, proposalFileName, fileName) => {
   const data = {
     projectName: formData.get('projectName'),
-    members: JSON.parse(formData.get('listProjectMember')),
+    picName: formData.get('picName'),
+    typeOfIdentitiy: formData.get('typeOfIdentitiy'),
+    identityNumber: formData.get('identityNumber'),
     nationality:
       formData.get('nationality') === 'undefined'
         ? null
@@ -31,20 +31,39 @@ export const submitProject = async (formData, fileName) => {
   })
   console.log('@newProject _<', newProject, '>_')
 
-  const newBlob = await put(fileName, blob, {
+  // Upload file to vercel blob storage
+  const proposalBlob = formData.get('proposal')
+  const newProposalBlob = await put(proposalFileName, proposalBlob, {
     access: 'public',
   })
-  console.log('@newBlob _<', newBlob, '>_')
+  console.log('@newProposalBlob _<', newProposalBlob, '>_')
 
+  const fileBlob = formData.get('file')
+  const newFileBlob = await put(fileName, fileBlob, {
+    access: 'public',
+  })
+  console.log('@newFileBlob _<', newFileBlob, '>_')
+
+  // Update the uploaded file
   const updated = await prisma.projects.update({
     where: {
       id: newProject.id,
     },
     data: {
       file: {
-        create: {
-          fileName: newBlob.pathname,
-          url: newBlob.url,
+        createMany: {
+          data: [
+            {
+              fileName: newProposalBlob.pathname,
+              url: newProposalBlob.url,
+              type: 'proposal',
+            },
+            {
+              fileName: newFileBlob.pathname,
+              url: newFileBlob.url,
+              type: 'assets',
+            },
+          ],
         },
       },
     },

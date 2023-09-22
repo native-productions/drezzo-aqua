@@ -8,30 +8,38 @@ datasource db {
 }
 
 model Projects {
-  id             String    @id @default(uuid())
-  projectName    String
-  members        String[]
-  nationality    String?
-  email          String?   @unique
-  telegram       String?
-  whereDoYouKnow String?   @default("Other")
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
-  deletedAt      DateTime?
-  file           Files[]
+  id               String    @id @default(uuid())
+  projectName      String
+  picName          String
+  typeOfIdentitiy  String?
+  identityNumber   String?
+  nationality      String?
+  email            String?   @unique
+  telegram         String?
+  whereDoYouKnow   String?   @default("Other")
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  deletedAt        DateTime?
+  file             Files[]
 
   @@map("project")
 }
 
 model Files {
-  id        String    @id @default(uuid())
+  id        String     @id @default(uuid())
   fileName  String
   url       String
+  type      TypeOfFile
   projectId String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
   deletedAt DateTime?
-  project   Projects  @relation(fields: [projectId], references: [id])
+  project   Projects   @relation(fields: [projectId], references: [id])
 
   @@map("file")
+}
+
+enum TypeOfFile {
+  proposal
+  assets
 }

@@ -3,6 +3,20 @@ import Image from 'next/image'
 import Title from './title'
 import SocialMedia from './social-media'
 
+const nav = [
+  {
+    name: 'Becoming our partners',
+    href: 'mailto:drezzoworldwide@gmail.com?subject=Drezzo collaboration request',
+  },
+  { name: 'About', href: '#' },
+  { name: 'Contact', href: 'mailto:drezzoworldwide@gmail.com' },
+  { name: 'Tech support', href: 'mailto:services.drezzo@gmail.com' },
+  {
+    name: 'Privacy Policy',
+    href: 'https://drezzo.notion.site/Privacy-Policy-7127eb6f816d46deab7b65ff7eee8120',
+  },
+]
+
 function Footer() {
   return (
     <footer className="z-50 w-full bg-[#111827] px-8 py-12">
@@ -25,18 +39,29 @@ function Footer() {
           width={80}
           height={45}
         />
-        <div className="hidden space-x-4 pt-4 text-sm text-white md:visible">
-          <a href="/">Becoming our partner</a>
-          <a href="/">About</a>
-          <a href="/">Contact</a>
-          <a href="/">Tech support</a>
+        <div className="hidden space-x-4 pt-4 text-sm text-white md:block">
+          {nav.map((v) => (
+            <a target="_blank" key={v.name} href={v.href}>
+              {v.name}
+            </a>
+          ))}
         </div>
         <div className="flex w-full flex-col items-center space-y-3 pt-4 text-sm text-white md:hidden">
-          <a href="/">Becoming our partner</a>
+          <a
+            target="_blank"
+            href="mailto:drezzoworldwide@gmail.com?subject=Drezzo collaboration request"
+          >
+            Becoming our partner
+          </a>
           <div className="flex w-full justify-center space-x-3">
-            <a href="/">About</a>
-            <a href="/">Contact</a>
-            <a href="/">Tech support</a>
+            {nav.map(
+              (v) =>
+                !v.name.includes('partners') && (
+                  <a target="_blank" key={v.name} href={v.href}>
+                    {v.name}
+                  </a>
+                ),
+            )}
           </div>
         </div>
         <p className="test-sm">© 2023 Drezzo. All rights reserved.</p>

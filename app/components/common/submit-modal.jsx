@@ -8,7 +8,7 @@ import Title from './title'
 function SubmitModal({ onClose }) {
   return (
     <Card className="rounded-xl border-none bg-border-blue-linear-gradient p-[3px]">
-      <Card className="h-max overflow-y-scroll border-none bg-[#111827] p-6 text-[#8A939E]">
+      <Card className="scrolbar-hide h-min overflow-y-scroll border-none bg-[#111827] p-6 text-[#8A939E]">
         <header className="mb-4 space-y-1 md:mb-8">
           <div className="flex w-full justify-end">
             <XMarkIcon

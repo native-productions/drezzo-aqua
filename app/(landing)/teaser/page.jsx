@@ -1,9 +1,9 @@
 import VideoCard from '@/components/common/video-card'
 
 export const metadata = {
-  title: 'Drezzo x Aquacity | Teaser',
+  title: 'NFT Project Competition | Teaser',
   description:
-    'Bridging the gap between Web2 and Web3 with Digital Fashion. Get a Free Airdrop and create cool social media content using AR Cameras. Join to drezzo now.',
+    'SUBMIT YOUR NFT PROJECT AND WIN AN EXCLUSIVE CHANCE TO INVESTOR MEET UP AND TRAVEL IN PHUKET, THAILAND (3 DAYS 2 NIGHTS).',
 }
 
 function TeaserPage() {
