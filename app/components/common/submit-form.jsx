@@ -170,7 +170,7 @@ export default function SubmitForm() {
                 <FormControl>
                   {isBasicInput(key) && (
                     <Input
-                      className="text-xs text-white md:text-base"
+                      className="py-1 text-xs text-white md:text-base"
                       type={key === 'email' ? 'email' : 'text'}
                       placeholder={
                         key !== 'idType'

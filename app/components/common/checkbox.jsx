@@ -14,7 +14,7 @@ export default function CheckboxComponent({ label, ...rest }) {
       />
       <label
         htmlFor="agreement"
-        className="text-xs font-medium leading-none text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        className="text-[10px] font-medium leading-none text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
       >
         {label}
       </label>

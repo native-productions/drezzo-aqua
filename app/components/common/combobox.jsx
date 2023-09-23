@@ -41,7 +41,7 @@ export default function Combobox({ items, name, onSelect }) {
       </PopoverTrigger>
       <PopoverContent className="w-full p-0">
         <Command className="max-h-96">
-          <CommandInput placeholder={`Search ${name}`} className="h-9" />
+          <CommandInput placeholder={`Search ${name}`} className="h-7" />
           <CommandEmpty>No item found.</CommandEmpty>
           <CommandGroup>
             {items.map((item) => (

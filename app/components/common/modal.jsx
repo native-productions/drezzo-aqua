@@ -34,14 +34,14 @@ function BaseModal({
   return (
     <animated.aside
       {...props}
-      style={{ ...animation, zIndex: 9999 }}
-      className="fixed top-0 z-50 flex h-screen w-screen items-center justify-center overflow-y-scroll bg-black/70 px-6 py-5 xl:px-0"
+      style={{ ...animation, zIndex: 50 }}
+      className="fixed top-0 z-50 flex h-screen w-screen items-center justify-center overflow-y-scroll bg-black/70 xl:px-0"
       id="modal"
     >
       <animated.div
         style={modalAnimation}
         className={cn(
-          'z-50 h-auto w-full max-w-lg rounded-2xl bg-[#cdd0d5] text-base text-[#2d2b2b]',
+          'z-50 h-max w-full max-w-lg rounded-xl bg-transparent text-base text-[#2d2b2b]',
           props.className,
         )}
       >
@@ -72,7 +72,7 @@ function BaseModal({
             </button>
           </header>
         )}
-        <div>{props?.children}</div>
+        {props?.children}
       </animated.div>
     </animated.aside>
   )
