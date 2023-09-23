@@ -207,7 +207,7 @@ export default function SubmitForm() {
                     accept=".zip"
                     onDrop={(e) => onDrop(e, 'proposal')}
                     files={blob?.proposal}
-                    icon={<FileIcon className="h-8 w-8" />}
+                    icon={<FileIcon className="h-5 w-5" />}
                     handleRemoveFile={() => handleRemoveFile('proposal')}
                     maxFiles={1}
                     label="Proposal PDF"
@@ -218,7 +218,7 @@ export default function SubmitForm() {
                     accept=".zip"
                     onDrop={(e) => onDrop(e, 'file')}
                     files={blob?.file}
-                    icon={<FileIcon className="h-8 w-8" />}
+                    icon={<FileIcon className="h-5 w-5" />}
                     handleRemoveFile={() => handleRemoveFile('file')}
                     maxFiles={1}
                     label="Your NFTs assets (in ZIP)"

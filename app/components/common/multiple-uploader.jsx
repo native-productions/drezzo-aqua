@@ -30,13 +30,13 @@ function MultipleUploader({
         <div
           {...getRootProps()}
           className={cn(
-            'hover:bg-rgba05 mx-auto flex h-28 w-full items-center justify-center rounded-lg border p-1.5 text-center font-medium hover:cursor-pointer hover:border-stone-500 md:h-40 md:p-3',
+            'hover:bg-rgba05 mx-auto flex h-max w-full items-start rounded-lg border p-1.5 text-center font-medium hover:cursor-pointer hover:border-stone-500 md:h-max md:p-3',
             isDragAccept && 'bg-63b border-2 border-white font-bold text-white',
           )}
         >
           <input {...getInputProps()} />
 
-          <div className="flex flex-col items-center justify-center gap-y-3 md:scale-90 md:gap-y-6">
+          <div className="flex items-center justify-start space-x-1">
             {icon || (
               <Image
                 src="/svgs/image.svg"
@@ -47,13 +47,13 @@ function MultipleUploader({
               />
             )}
             <div className="flex flex-col gap-y-2">
-              <h1 className="text-xs text-white md:text-base">
+              {/* <h1 className="text-xs text-white md:text-base">
                 {isDragAccept
                   ? 'File will be uploaded'
                   : isDragReject
                   ? 'Unable to upload file'
                   : 'Upload a file or drag and drop'}
-              </h1>
+              </h1> */}
               <p className="text-xs font-normal">{label}</p>
             </div>
           </div>
