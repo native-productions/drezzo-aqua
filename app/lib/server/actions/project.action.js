@@ -23,6 +23,7 @@ export const submitProject = async (formData, proposalFileName, fileName) => {
         ? null
         : formData.get('telegram'),
     whereDoYouKnow: formData.get('whereDoYouKnow'),
+    isAgree: formData.get('agreement') === 'true',
   }
   console.log('@data _<', data, '>_')
 

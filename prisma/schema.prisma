@@ -17,6 +17,7 @@ model Projects {
   email            String?   @unique
   telegram         String?
   whereDoYouKnow   String?   @default("Other")
+  isAgree          Boolean   @default(false)
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
   deletedAt        DateTime?
