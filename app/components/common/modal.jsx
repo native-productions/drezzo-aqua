@@ -34,8 +34,8 @@ function BaseModal({
   return (
     <animated.aside
       {...props}
-      style={animation}
-      className="fixed z-50 flex h-screen w-screen items-center justify-center overflow-y-scroll bg-black/70 px-6 py-5 xl:px-0"
+      style={{ ...animation, zIndex: 9999 }}
+      className="fixed top-0 z-50 flex h-screen w-screen items-center justify-center overflow-y-scroll bg-black/70 px-6 py-5 xl:px-0"
       id="modal"
     >
       <animated.div
