@@ -13,8 +13,9 @@ function Navbar() {
   const { push } = useRouter()
   return (
     <header
+      style={{ zIndex: 999 }}
       className={cn(
-        'z-50 mb-4 flex w-full items-center justify-between overflow-x-hidden sm:px-8',
+        'fixed left-0 top-0 z-50 mb-4 flex w-full items-center justify-between overflow-x-hidden bg-black/40 backdrop-blur-lg sm:px-8',
         fontInter.medium.className,
       )}
     >

@@ -25,7 +25,7 @@ export default function RootLayout(props) {
         )}
         <div className="mx-auto w-full max-w-7xl">
           <Navbar />
-          <main className="overflow-x-hidden px-4 md:px-8">
+          <main className="mt-32 overflow-x-hidden px-4 md:px-8">
             {props.children}
           </main>
         </div>

@@ -47,13 +47,13 @@ function TermsSection() {
           Competition.
         </p>
       </header>
-      <div className="flex flex-col items-center md:flex-row md:items-center md:justify-evenly">
+      <div className="mt-12 flex flex-col items-center md:flex-row md:items-center md:justify-evenly">
         <Image
-          src="/digital-fashion/terms1.png"
+          src="/digital-fashion/NEW/Bloom_Splash Vogue.png"
           alt="digital-fashion-drezzo"
-          className="mb-8 max-w-[200px] md:mb-0 md:max-w-none md:-translate-y-6"
-          width={430}
-          height={430}
+          className="mb-8 max-w-[250px] md:mb-0 md:max-w-none md:-translate-y-6"
+          width={250}
+          height={250}
         />
         <Accordion
           type="single"
@@ -146,11 +146,11 @@ function TermsSection() {
           ))}
         </Accordion>
         <Image
-          src="/digital-fashion/terms2.png"
+          src="/digital-fashion/NEW/ducknft.png"
           alt="digital-fashion-drezzo"
-          className="mt-8 max-w-[200px] md:mt-0 md:max-w-none md:-translate-y-6"
-          width={430}
-          height={430}
+          className="mt-8 max-w-[150px] md:mt-0 md:max-w-none md:-translate-y-6"
+          width={350}
+          height={350}
         />
       </div>
       <br />
@@ -158,11 +158,11 @@ function TermsSection() {
       <br />
       <div className="mt-6 flex w-full flex-col items-center md:mt-12 md:flex-row md:items-start md:justify-evenly">
         <Image
-          src="/digital-fashion/terms3.png"
+          src="/digital-fashion/NEW/gajah_society-removebg-preview.png"
           alt="digital-fashion-drezzo"
           className="max-w-[200px] md:max-w-none md:-translate-y-6"
-          width={430}
-          height={430}
+          width={330}
+          height={330}
         />
         <div className="mt-6 space-y-6 md:mt-0 md:w-1/2">
           <div className="flex flex-col justify-start">
