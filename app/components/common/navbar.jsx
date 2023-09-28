@@ -19,34 +19,36 @@ function Navbar() {
         fontInter.medium.className,
       )}
     >
-      <nav className="hidden w-max items-center space-x-4 font-semibold text-white md:flex">
-        <div className="py-6">
-          <Image
-            src="/svgs/logo-white.svg"
-            alt="Drezzo Logo"
-            width={80}
-            height={50}
-          />
-        </div>
-        <span className="text-3xl">/</span>
-        {navbarMenu.map((item) => (
-          <Link
-            href={item.path}
-            key={item.name}
-            type="button"
-            className="hover:text-gray-400"
+      <div className="w-full max-w-7xl mx-auto flex items-center justify-between">
+        <nav className="hidden w-max items-center space-x-4 font-semibold text-white md:flex">
+          <div className="py-6">
+            <Image
+              src="/svgs/logo-white.svg"
+              alt="Drezzo Logo"
+              width={80}
+              height={50}
+            />
+          </div>
+          <span className="text-3xl">/</span>
+          {navbarMenu.map((item) => (
+            <Link
+              href={item.path}
+              key={item.name}
+              type="button"
+              className="hover:text-gray-400"
+            >
+              {item.name}
+            </Link>
+          ))}
+        </nav>
+        <div className="flex w-full justify-center pt-3 md:block md:w-auto md:pt-0">
+          <DrezzoButton
+            className="mx-auto md:mx-0"
+            onClick={() => push('/submit')}
           >
-            {item.name}
-          </Link>
-        ))}
-      </nav>
-      <div className="flex w-full justify-center pt-3 md:block md:w-auto md:pt-0">
-        <DrezzoButton
-          className="mx-auto md:mx-0"
-          onClick={() => push('/submit')}
-        >
-          SUBMIT NOW!
-        </DrezzoButton>
+            SUBMIT NOW!
+          </DrezzoButton>
+        </div>
       </div>
     </header>
   )

@@ -72,7 +72,7 @@ function TrophyCard({ id, title, desc, img }) {
           </h1>
           <p
             className={cn(
-              'px-4 text-sm text-[#e8e6e3ac] md:text-[0.7rem] lg:text-lg',
+              'px-4 text-xs text-[#e8e6e3ac] md:text-[10px] lg:text-base',
               fontInter.base.className,
             )}
           >
