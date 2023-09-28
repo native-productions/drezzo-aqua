@@ -11,7 +11,7 @@ export const submitProject = async (formData, proposalFileName, fileName) => {
   const data = {
     projectName: formData.get('projectName'),
     picName: formData.get('picName'),
-    typeOfIdentitiy: formData.get('typeOfIdentitiy'),
+    typeOfIdentity: formData.get('typeOfIdentity'),
     identityNumber: formData.get('identityNumber'),
     nationality:
       formData.get('nationality') === 'undefined'
@@ -22,6 +22,7 @@ export const submitProject = async (formData, proposalFileName, fileName) => {
       formData.get('telegram') === 'undefined'
         ? null
         : formData.get('telegram'),
+    category: formData.get('category'),
     whereDoYouKnow: formData.get('whereDoYouKnow'),
     isAgree: formData.get('agreement') === 'true',
   }

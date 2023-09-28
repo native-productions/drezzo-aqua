@@ -11,11 +11,12 @@ model Projects {
   id               String    @id @default(uuid())
   projectName      String
   picName          String
-  typeOfIdentitiy  String?
+  typeOfIdentity   String?
   identityNumber   String?
   nationality      String?
   email            String?   @unique
   telegram         String?
+  category         String?   @default("Other")
   whereDoYouKnow   String?   @default("Other")
   isAgree          Boolean   @default(false)
   createdAt        DateTime  @default(now())

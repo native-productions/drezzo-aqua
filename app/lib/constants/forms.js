@@ -25,7 +25,7 @@ export const projectFormSchema = z.object({
       message: 'PIC name must be at least 2 characters',
     })
     .optional(),
-  typeOfIdentitiy: z.optional(z.string()),
+  typeOfIdentity: z.optional(z.string()),
   identityNumber: z.optional(z.string()),
   nationality: z.optional(z.string()),
   email: z.optional(
@@ -35,6 +35,7 @@ export const projectFormSchema = z.object({
   ),
   telegram: z.optional(z.string().min(2).max(50)),
   whereDoYouKnow: z.optional(z.string()),
+  category: z.optional(z.string()),
   proposal: fileSchema,
   file: fileSchema,
   agreement: z.optional(z.boolean()),
@@ -69,4 +70,39 @@ export const whereDoYouKnowOptions = [
     label: 'Other',
     value: 'other',
   },
+]
+
+export const categoryOptions = [
+  {
+    label: 'Real Estate',
+    value: 'Real Estate',
+  },
+  {
+    label: 'Health Entertainment',
+    value: 'Health Entertainment',
+  },
+  {
+    label: 'PFP',
+    value: 'PFP',
+  },
+  {
+    label: '1/1',
+    value: '1/1',
+  },
+  {
+    label: 'ART',
+    value: 'ART',
+  },
+  {
+    label: 'Digital Fashion',
+    value: 'Digital Fashion',
+  },
+  {
+    label: "Gaming",
+    value: "Gaming",
+  },
+  {
+    label: 'Other',
+    value: 'Other',
+  }
 ]

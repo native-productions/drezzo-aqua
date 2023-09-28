@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useForm } from 'react-hook-form'
-import { projectFormSchema, whereDoYouKnowOptions } from '@/lib/constants/forms'
+import {categoryOptions, projectFormSchema, whereDoYouKnowOptions} from '@/lib/constants/forms'
 import { submitProject } from '@/lib/server/actions/project.action'
 import { capitalize } from '@/lib/utils/view'
 import { useState } from 'react'
@@ -153,7 +153,8 @@ export default function SubmitForm() {
     key !== 'nationality' &&
     key !== 'whereDoYouKnow' &&
     key !== 'agreement' &&
-    key !== 'proposal'
+    key !== 'proposal' &&
+    key !== 'category'
 
   return (
     <Form {...form}>
@@ -191,7 +192,15 @@ export default function SubmitForm() {
                     }}
                   />
                 )}
-                {key === 'whereDoYouKnow' && (
+                {key === 'category' && (
+                  <Combobox
+                    name={capitalize(field.name)}
+                    items={categoryOptions}
+                    onSelect={(value) => {
+                      form.setValue('category', value)
+                    }}
+                  />
+                )}{key === 'whereDoYouKnow' && (
                   <Combobox
                     name={capitalize(field.name)}
                     items={whereDoYouKnowOptions}
