@@ -3,14 +3,14 @@ export const termsContent = [
     id: 1,
     title: '1. ELIGIBILITY',
     content: [
-      'The NFT PROJECT COMPETITION 2023 is open for NFT Projects Team and NFT Artist',
+      'THE NFT PROJECT COMPETITION 2023 is open for NFT Projects Team',
       'NFT Projects team are allowed for 1 – 4 person',
-      'NFT Artist are allowed for 1 person',
       'All of NFTs require a Minimum 100 assets',
       'Prepare the detail of your NFT projects:',
       [
         'Name of your NFT Project/ Art',
-        'Background and Philosophy story of your NFT Project / Art',
+        'Background and Philosophical story of your NFT Project',
+        'Your Proposal NFT Project in PDF format',
         'The NFTs assets should in PNG or MP4 format',
         'Submitted file only allowed for ZIP or RAR format',
       ],
@@ -20,7 +20,7 @@ export const termsContent = [
     id: 2,
     title: '2. COMPETITION PERIOD',
     content:
-      'The Competition begins on [20th September 2023] and ends on [31th October 2023].',
+      'The Competition begins on [1th September 2023] and ends on [31th October 2023].',
   },
   {
     id: 3,
