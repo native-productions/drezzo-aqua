@@ -1,5 +1,11 @@
 /* eslint-disable camelcase */
-import { Inter, Bungee, Bungee_Inline, Rubik } from 'next/font/google'
+import {
+  Inter,
+  Bungee,
+  Bungee_Inline,
+  Rubik,
+  JetBrains_Mono,
+} from 'next/font/google'
 
 const interBase = Inter({
   subsets: ['latin', 'latin-ext'],
@@ -29,6 +35,11 @@ const rubikBold = Rubik({
 const bungeeInline = Bungee_Inline({
   subsets: ['latin', 'latin-ext'],
   weight: '400',
+})
+
+export const jetbrainsMono = JetBrains_Mono({
+  subsets: ['latin', 'latin-ext'],
+  weight: '600',
 })
 
 export const fontInter = {

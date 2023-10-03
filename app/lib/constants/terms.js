@@ -20,7 +20,7 @@ export const termsContent = [
     id: 2,
     title: '2. COMPETITION PERIOD',
     content:
-      'The Competition begins on [1th September 2023] and ends on [31th October 2023].',
+      'The Competition begins on [1th October 2023] and ends on [31th October 2023].',
   },
   {
     id: 3,
