@@ -41,5 +41,6 @@ export async function GET(req) {
   return Response.json({
     data: projects,
     totalItem: count,
+    totalPage: Math.ceil(count / limit),
   })
 }

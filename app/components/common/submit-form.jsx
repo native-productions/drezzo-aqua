@@ -153,7 +153,7 @@ export default function SubmitForm() {
     key !== 'listProjectMember' &&
     key !== 'nationality' &&
     key !== 'whereDoYouKnow' &&
-    key !== 'agreement' &&
+    key !== 'isAgree' &&
     key !== 'proposal' &&
     key !== 'category'
 
@@ -233,7 +233,7 @@ export default function SubmitForm() {
                     label="Your NFTs assets (in ZIP)"
                   />
                 )}
-                {key === 'agreement' && (
+                {key === 'isAgree' && (
                   <CheckboxComponent
                     onCheckedChange={field.onChange}
                     {...field}

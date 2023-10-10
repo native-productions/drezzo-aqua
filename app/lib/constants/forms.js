@@ -38,7 +38,7 @@ export const projectFormSchema = z.object({
   category: z.optional(z.string()),
   proposal: fileSchema,
   file: fileSchema,
-  agreement: z.optional(z.boolean()),
+  isAgree: z.optional(z.boolean()),
 })
 
 export const whereDoYouKnowOptions = [
@@ -98,11 +98,11 @@ export const categoryOptions = [
     value: 'Digital Fashion',
   },
   {
-    label: "Gaming",
-    value: "Gaming",
+    label: 'Gaming',
+    value: 'Gaming',
   },
   {
     label: 'Other',
     value: 'Other',
-  }
+  },
 ]

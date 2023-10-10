@@ -9,11 +9,11 @@ export default function CheckboxComponent({ label, ...rest }) {
         {...rest}
         checked={rest.checked}
         onCheckedChange={rest.onChange}
-        id="agreement"
+        id="isAgree"
         className="h-6 w-6 rounded-lg bg-border-blue-linear-gradient"
       />
       <label
-        htmlFor="agreement"
+        htmlFor="isAgree"
         className="text-[10px] font-medium leading-none text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
       >
         {label}
