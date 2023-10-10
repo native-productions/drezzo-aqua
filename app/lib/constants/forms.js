@@ -4,7 +4,7 @@ import * as z from 'zod'
 
 const fileSchema = z
   .custom((value) => value instanceof File, {
-    message: 'File must be a File object',
+    message: 'File is required',
   })
   .refine(() => true, {
     message: 'File must be a valid file type',
@@ -19,26 +19,21 @@ export const projectFormSchema = z.object({
     .max(50, {
       message: 'Project name must be at most 50 characters',
     }),
-  picName: z
-    .string()
-    .min(2, {
-      message: 'PIC name must be at least 2 characters',
-    })
-    .optional(),
-  typeOfIdentity: z.optional(z.string()),
-  identityNumber: z.optional(z.string()),
-  nationality: z.optional(z.string()),
-  email: z.optional(
-    z.string().email({
-      message: 'Invalid email address',
-    }),
-  ),
-  telegram: z.optional(z.string().min(2).max(50)),
-  whereDoYouKnow: z.optional(z.string()),
-  category: z.optional(z.string()),
+  picName: z.string().min(2, {
+    message: 'PIC name must be at least 2 characters',
+  }),
+  typeOfIdentity: z.string(),
+  identityNumber: z.string(),
+  nationality: z.string(),
+  email: z.string().email({
+    message: 'Invalid email address',
+  }),
+  telegram: z.string().min(2).max(50),
+  whereDoYouKnow: z.string(),
+  category: z.string(),
   proposal: fileSchema,
   file: fileSchema,
-  isAgree: z.optional(z.boolean()),
+  isAgree: z.boolean(),
 })
 
 export const whereDoYouKnowOptions = [

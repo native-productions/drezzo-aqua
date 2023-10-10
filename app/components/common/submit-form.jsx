@@ -130,7 +130,17 @@ export default function SubmitForm() {
       return
     }
 
-    if (file.size > 10000000) {
+    if (key === 'file' && file.size > 10000000 * 5) {
+      toast({
+        title: 'File size is too large',
+        description: `Expected file size is at most 50MB, but got ${blobizeInMB}MB`,
+        status: 'error',
+        duration: 5000,
+      })
+      return
+    }
+
+    if (key === 'proposal' && file.size > 10000000) {
       toast({
         title: 'File size is too large',
         description: `Expected file size is at most 10MB, but got ${blobizeInMB}MB`,
@@ -213,7 +223,7 @@ export default function SubmitForm() {
                 )}
                 {key === 'proposal' && (
                   <MultipleUploader
-                    accept=".zip"
+                    accept=".pdf"
                     onDrop={(e) => onDrop(e, 'proposal')}
                     files={blob?.proposal}
                     icon={<FileIcon className="h-5 w-5" />}

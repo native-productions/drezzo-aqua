@@ -6,8 +6,8 @@ export async function GET(req) {
   const query = req.url.split('?')[1]
   const params = new URLSearchParams(query)
 
-  const page = params.get('page') || 1
-  const limit = params.get('limit') || 10
+  const page = Number(params.get('page')) || 1
+  const limit = Number(params.get('limit')) || 10
   const order = params.get('order').toLowerCase() || 'desc'
 
   if (password !== (process.env.HEADER_PASSWORD || 'Drezzo@@123')) {
