@@ -15,7 +15,11 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useForm } from 'react-hook-form'
-import {categoryOptions, projectFormSchema, whereDoYouKnowOptions} from '@/lib/constants/forms'
+import {
+  categoryOptions,
+  projectFormSchema,
+  whereDoYouKnowOptions,
+} from '@/lib/constants/forms'
 import { submitProject } from '@/lib/server/actions/project.action'
 import { capitalize } from '@/lib/utils/view'
 import { useState } from 'react'
@@ -55,19 +59,16 @@ export default function SubmitForm() {
     }
 
     const formData = new FormData()
+    formData.append('file', file)
+    formData.append('proposal', proposal)
 
-    Object.keys(datas).forEach((key) => {
-      if (key === 'file') {
-        formData.append(key, datas[key])
-      } else {
-        formData.append(key, JSON.stringify(datas[key]))
-      }
-    })
+    delete datas.file
+    delete datas.proposal
 
     try {
       setLoading(true)
 
-      await submitProject(formData, proposal.name, file.name)
+      await submitProject(datas, formData, proposal.name, file.name)
 
       toast({
         title: 'Thanks for submitting your project 🎉',
@@ -200,7 +201,8 @@ export default function SubmitForm() {
                       form.setValue('category', value)
                     }}
                   />
-                )}{key === 'whereDoYouKnow' && (
+                )}
+                {key === 'whereDoYouKnow' && (
                   <Combobox
                     name={capitalize(field.name)}
                     items={whereDoYouKnowOptions}

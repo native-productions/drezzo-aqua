@@ -1,8 +1,8 @@
 import Title from '@/components/common/title'
+import Image from 'next/image'
 import { Card } from '@/components/ui/card'
 import { cn } from '@/lib/utils/view'
 import { jetbrainsMono } from '@/styles/fonts'
-import Image from 'next/image'
 
 function TimelineSection() {
   return (

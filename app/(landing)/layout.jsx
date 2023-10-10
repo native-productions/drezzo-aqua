@@ -1,9 +1,8 @@
-/* eslint-disable no-restricted-syntax */
 /* eslint-disable react/destructuring-assignment */
 import { Decorators } from '@/components/common/decorators'
+import Toaster from '@/components/ui/toaster'
 import Navbar from '@/components/common/navbar'
 import Footer from '@/components/common/footer'
-import Toaster from '@/components/ui/toaster'
 import '@/styles/globals.css'
 
 export const metadata = {
