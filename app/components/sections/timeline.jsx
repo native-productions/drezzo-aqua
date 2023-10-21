@@ -153,8 +153,8 @@ function TimelineSteps() {
             />
           </div>
           <Step
-            id="#1"
-            title="competition open"
+            id="#2"
+            title="Submission Process"
             className="h-max max-w-[306px] pl-1"
           />
           <div className="flex w-full justify-start">
@@ -167,8 +167,8 @@ function TimelineSteps() {
             />
           </div>
           <Step
-            id="#3"
-            title="judging process"
+            id="#4"
+            title="10 finalist announcement"
             className="h-max max-w-[306px] pl-1"
           />
           <div className="flex w-full justify-start">
