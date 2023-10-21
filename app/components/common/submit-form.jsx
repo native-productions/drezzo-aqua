@@ -84,10 +84,10 @@ export default function SubmitForm() {
 
       setLoading(false)
 
-      setTimeout(() => {
-        form.reset()
-        back()
-      }, 500)
+      // setTimeout(() => {
+      //   form.reset()
+      //   back()
+      // }, 500)
     } catch (error) {
       console.error('@submitProjectError =>', error)
 
