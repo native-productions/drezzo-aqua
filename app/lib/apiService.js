@@ -4,7 +4,7 @@ export default async function uploadBlob(projectId, { proposal, fileZip }) {
   const proposalBlob = proposal
   const newProposalBlob = await upload(proposalBlob.name, proposalBlob, {
     access: 'public',
-    handleUploadUrl: '/api/blob/',
+    handleUploadUrl: '/api/blob',
     clientPayload: {
       fileName: proposalBlob.name,
       projectId,
@@ -15,7 +15,7 @@ export default async function uploadBlob(projectId, { proposal, fileZip }) {
   const file = fileZip
   const newBlob = await upload(file.name, file, {
     access: 'public',
-    handleUploadUrl: '/api/blob/',
+    handleUploadUrl: '/api/blob',
     clientPayload: {
       fileName: file.name,
       projectId,
