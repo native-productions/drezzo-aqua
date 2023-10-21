@@ -72,7 +72,7 @@ export default function SubmitForm() {
         fileZip: file,
       })
 
-      console.log(resUploads)
+      console.log('@res uploads', resUploads)
 
       toast({
         title: 'Thanks for submitting your project 🎉',
@@ -90,7 +90,6 @@ export default function SubmitForm() {
       // }, 500)
     } catch (error) {
       console.error('@submitProjectError =>', error)
-
       const errorUnique = error.message.includes('Unique constraint failed')
       const errorEmail = error.message.includes('email')
 

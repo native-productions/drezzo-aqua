@@ -9,9 +9,6 @@ import { prisma } from '../prisma'
 export const submitProject = async (datas) => {
   const newProject = await prisma.projects.create({
     data: datas,
-    include: {
-      file: true,
-    },
   })
   console.log('@newProject _<', newProject, '>_')
 
