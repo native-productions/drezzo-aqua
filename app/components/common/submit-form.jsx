@@ -26,6 +26,7 @@ import { useState } from 'react'
 import { FileIcon } from '@radix-ui/react-icons'
 import { countriesOptions } from '@/lib/constants/nationality'
 import { useRouter } from 'next/navigation'
+import uploadBlob from '@/lib/apiService'
 import { useToast } from '../ui/use-toast'
 import MultipleUploader from './multiple-uploader'
 import DrezzoButton from './drezzo-button'
@@ -58,17 +59,20 @@ export default function SubmitForm() {
       return
     }
 
-    const formData = new FormData()
-    formData.append('file', file)
-    formData.append('proposal', proposal)
-
     delete datas.file
     delete datas.proposal
 
     try {
       setLoading(true)
 
-      await submitProject(datas, formData, proposal.name, file.name)
+      const newProject = await submitProject(datas)
+
+      const resUploads = await uploadBlob(newProject?.id, {
+        proposal,
+        fileZip: file,
+      })
+
+      console.log(resUploads)
 
       toast({
         title: 'Thanks for submitting your project 🎉',
