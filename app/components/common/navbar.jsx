@@ -5,12 +5,15 @@ import Link from 'next/link'
 import Image from 'next/image'
 import DrezzoButton from '@/components/common/drezzo-button'
 import { navbarMenu } from '@/lib/constants/menus'
-import { cn } from '@/lib/utils/view'
+import { cn, redirectToGForm } from '@/lib/utils/view'
 import { fontInter } from '@/styles/fonts/index'
-import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/navigation'
 
 function Navbar() {
-  const { push } = useRouter()
+  // const { push } = useRouter()
+
+
+
   return (
     <header
       style={{ zIndex: 45 }}
@@ -44,7 +47,7 @@ function Navbar() {
         <div className="flex w-full justify-center pt-3 md:block md:w-auto md:pt-0">
           <DrezzoButton
             className="mx-auto md:mx-0"
-            onClick={() => push('/submit')}
+            onClick={redirectToGForm}
           >
             SUBMIT NOW!
           </DrezzoButton>

@@ -14,3 +14,10 @@ export const capitalize = (string) => {
   )
   return capitalizedWords.join(' ')
 }
+
+export const redirectToGForm = () => {
+  window.open(
+    'https://forms.gle/iwDmz1eVrZc5ifvJA',
+    '_blank',
+  )
+}

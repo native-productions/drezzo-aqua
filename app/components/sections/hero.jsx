@@ -3,12 +3,12 @@
 import React from 'react'
 import Image from 'next/image'
 import { fontBungee, fontInter, fontRubik } from '@/styles/fonts'
-import { cn, createDropshadow } from '@/lib/utils/view'
-import { useRouter } from 'next/navigation'
+import { cn, createDropshadow, redirectToGForm } from '@/lib/utils/view'
+// import { useRouter } from 'next/navigation'
 import DrezzoButton from '../common/drezzo-button'
 
 function HeroSection() {
-  const { push } = useRouter()
+  // const { push } = useRouter()
 
   return (
     <section className="flex flex-col items-center justify-center space-y-0 md:space-y-2">
@@ -26,7 +26,7 @@ function HeroSection() {
       <div className="flex w-full justify-center py-6">
         <DrezzoButton
           className="mx-auto h-12 text-lg md:mx-0"
-          onClick={() => push('/submit')}
+          onClick={redirectToGForm}
         >
           SUBMIT NOW!
         </DrezzoButton>
